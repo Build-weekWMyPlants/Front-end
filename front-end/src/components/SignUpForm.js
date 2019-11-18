@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from "styled-components";
 import './SignUpForm.css';
+import { Link } from 'react-router-dom';
 
 const StyledForm = styled.div`
  display: flex;
@@ -75,6 +76,7 @@ const NewUser = ({ values, errors, touched, status }) => {
                         {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
                     </div>
                     <StyledButton>Next</StyledButton>
+                    <Link>Already Have An Account?</Link>
                 </StyledForm>
             </Form>
         </div>
