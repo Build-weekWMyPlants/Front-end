@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+
+.name-field {
+  width: 80%;
+}
+
+.select-field {
+  width: 80%;
+
+}
+
+.location-field {
+  width: 80%;
+}
