@@ -1,15 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route} from "react-router-dom";
+import FormikNewPlantForm from "./components/FormikNewPlantForm";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Identity theft is not a joke Jim!
-        </p>
-      </header>
+      
+
+  <Route path="/add-plant" render={props => <FormikNewPlantForm/>}/>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withformik, Form, Field } from 'formik';
 import * as yup from 'yup';
 
@@ -25,3 +25,28 @@ const H4Style = styled.h4`
             <H4Style>Icon</H4Style>
         </NavStyle>
 
+const NewUser = ({ values, errors, touched, status }) => {
+    const [user, setUser] = usetState([]);
+
+    useEffect(() => {
+        if (status) {
+            setUser([...user, status])
+        }
+    }, [status]);
+
+    return (
+        <div>
+            <Form>
+                <StyledForm>
+                    <div>
+                        <StyledEntry>Enter Name<Field type='text' name='name' placeholder='name'/></StyledEntry>
+                        {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
+                    </div>
+                    <div>
+                        <StyledEntry>Enter Number<Field type='number' name='number' placeholder='(xxx)-xxx-xxxx'/></StyledEntry>
+                    </div>
+                </StyledForm>
+            </Form>
+        </div>
+    )
+}
