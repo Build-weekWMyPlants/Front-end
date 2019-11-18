@@ -21,7 +21,7 @@ export const loginFail = error => ({
 export const login = e => {
     e.preventDefault();
     axios
-    .get("/signin" , data)
+    .get("/signin", data)
     .then(response => {
         console.log("LOGIN",response.data);
         dispatch(loginSuccess(response.data));
