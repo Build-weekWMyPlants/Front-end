@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0"
+=======
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "formik": "^2.0.4",
@@ -12,6 +17,7 @@
     "reactstrap": "^8.1.1",
     "styled-components": "^4.4.1",
     "yup": "^0.27.0"
+>>>>>>> 9cd8e5b4c04e3269b8c078d4b8aab5ecce513d15
   },
   "scripts": {
     "start": "react-scripts start",
