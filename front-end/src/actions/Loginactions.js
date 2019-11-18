@@ -9,15 +9,13 @@ export const loginStart = (data) => ({
     type: LOGIN_START,
     payload: data
 });
-export const loginSccess = () => ({
+export const loginSccess = token => ({
     type: LOGIN_SUCCESS,
-    payload: {}
+    payload: token
 })
 export const loginFail = error => ({
     tpye: LOGIN_FAIL,
-    Payload: {
-        error
-    }
+    Payload: error
 })
 
 export const login = e => {
