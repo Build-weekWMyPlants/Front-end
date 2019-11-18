@@ -5,19 +5,23 @@ import styled from "styled-components";
 import './SignUpForm.css';
 import { Link } from 'react-router-dom';
 
+const MainCont = styled.div`
+    width: 50%;
+    margin: 0 auto;
+`;
 const StyledForm = styled.div`
- display: flex;
- flex-direction: column;
- align-items: center;
- margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px auto;
 `;
 const StyledEntry = styled.label`
     color: black;
 `;
 const StyledResults = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const NavStyle = styled.nav`
@@ -40,6 +44,11 @@ const H4Style = styled.h4`
 `;
 const StyledButton = styled.button`
     background-color: #235B2D;
+    border: 1px solid #235B2D;
+    color: white;
+    width: 80%;
+    margin: 30 0;
+    border-radius: 20px;
 `;
 
 const NewUser = ({ values, errors, touched, status }) => {
@@ -52,7 +61,7 @@ const NewUser = ({ values, errors, touched, status }) => {
     }, [status]);
 
     return (
-        <div>
+        <MainCont>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
                 <H4Style>Icon</H4Style>
@@ -64,22 +73,27 @@ const NewUser = ({ values, errors, touched, status }) => {
             <Form>
                 <StyledForm>
                     <div>
-                        <StyledEntry>Enter UserName<Field className='input-box' type='text' name='username' placeholder='username'/></StyledEntry>
+                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username'/>
                         {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
+                        </StyledEntry>
+                        
                     </div>
                     <div>
-                        <StyledEntry>Enter Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx'/></StyledEntry>
-                        {touched.number && errors.number && (<p className='error'>{errors.numbers}</p>)}
+                        <StyledEntry>Enter Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx'/>
+                        {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
+                        </StyledEntry>
                     </div>
                     <div>
-                        <StyledEntry>Enter Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' /></StyledEntry>
+                        <StyledEntry>Enter Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
                         {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
+                        </StyledEntry>
+                        
                     </div>
                     <StyledButton>Next</StyledButton>
                     <Link>Already Have An Account?</Link>
                 </StyledForm>
             </Form>
-        </div>
+        </MainCont>
     )
 }
 const FormikNewUser = withFormik({
@@ -92,7 +106,7 @@ const FormikNewUser = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-        name: Yup.string().min(3, 'Name must have more than one character.').required('Required field.'),
+        name: Yup.string().min(3, 'Name must have more than three character.').required('Required field.'),
         number: Yup.string().min(10, 'Number must have at least 10 numbers.').required('Required field.'),
         password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.')
     }),
