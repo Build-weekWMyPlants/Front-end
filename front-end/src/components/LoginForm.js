@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { withFormik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import styled from "styled-components";
-import './SignUpForm.css';
-import { Link } from 'react-router-dom';
 
 const MainCont = styled.div`
     width: 50%;
@@ -23,7 +18,6 @@ const StyledResults = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-
 
 const NavStyle = styled.nav`
     display: flex;
@@ -51,7 +45,6 @@ const StyledButton = styled.button`
     margin: 30 0;
     border-radius: 20px;
 `;
-
 const NewUser = ({ values, errors, touched, status }) => {
     const [user, setUser] = useState([]);
 
@@ -68,8 +61,7 @@ const NewUser = ({ values, errors, touched, status }) => {
                 <H4Style>Icon</H4Style>
             </NavStyle>
             <div>
-                <h2>Let's get started</h2>
-                <h3>Create your account</h3>
+                <h2>Sign in!</h2>
             </div>
             <Form>
                 <StyledForm>
@@ -80,40 +72,15 @@ const NewUser = ({ values, errors, touched, status }) => {
                         
                     </div>
                     <div>
-                        <StyledEntry>Enter Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx'/>
-                        {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
-                        </StyledEntry>
-                    </div>
-                    <div>
                         <StyledEntry>Enter Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
                         {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
                         </StyledEntry>
                         
                     </div>
-                    <StyledButton>Next</StyledButton>
-                    <Link>Already Have An Account?</Link>
+                    <StyledButton>Log in</StyledButton>
+                    <Link>Don't Have An Account?</Link>
                 </StyledForm>
             </Form>
         </MainCont>
     )
 }
-
-const FormikNewUser = withFormik({
-    mapPropsToValues({ name, number, password, terms }) {
-        return {
-            name: name || '',
-            number: number || '',
-            password: password || ''
-        };
-    },
-
-    validationSchema: Yup.object().shape({
-        name: Yup.string().min(3, 'Name must have more than three character.').required('Required field.'),
-        number: Yup.string().min(10, 'Number must have at least 10 numbers.').required('Required field.'),
-        password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.')
-    }),
-})(NewUser);
-
-export default FormikNewUser;
-
-
