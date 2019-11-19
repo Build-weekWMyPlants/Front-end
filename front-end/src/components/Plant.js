@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 import styled from "styled-components";
 
 const NavStyle = styled.nav`
@@ -32,6 +33,7 @@ const MainContain = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: 2px solid red;
 `;
 
 const ImageDiv = styled.div`
@@ -40,23 +42,29 @@ const ImageDiv = styled.div`
     margin: 0 auto;
 `;
 const Plant = () => {
+    const [plant, setPlant] = useState()
+
     return (
         <div>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <H4Style>Icon</H4Style>
+                <Link className="icon-style" to="/userprofile">
+                    <FaUserCircle />
+                </Link>
             </NavStyle>
             <MainContain>
                 <h2>Nickname: Planty Planterson</h2>
-                <ImageDiv>
+                {/* <ImageDiv>
                     <img src="https://www.fillmurray.com/200/300" alt="placeholder murray" />
-                </ImageDiv>
+                </ImageDiv> */}
                 <h3>Species: Succulent</h3>
                 <h3>Location: Kitchen Window</h3>
-                <h3>Mark as Watered</h3>
                 <h3>Last Time Watered: </h3>
-                <button className="button-style-plant">Edit</button>
-                <button className="button-style-plant">Delete</button>
+                <div>
+                    <button className="watered-button">Watered</button>
+                    <button className="button-style-plant">Edit</button>
+                    <button className="delete-button">Delete</button>
+                </div>
             </MainContain>
         </div>
     );
