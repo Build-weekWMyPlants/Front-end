@@ -6,6 +6,7 @@ import PlantList from "./components/PlantList";
 import UserProfile from "./components/UserProfile";
 import './App.css';
 import FormikNewUser from './components/SignUpForm';
+import FormikLoginUser from './components/LoginForm';
 
 function App() {
   return (

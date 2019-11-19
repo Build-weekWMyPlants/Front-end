@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const MainCont = styled.div`
     width: 50%;
@@ -41,11 +45,11 @@ const StyledButton = styled.button`
     background-color: #235B2D;
     border: 1px solid #235B2D;
     color: white;
-    width: 80%;
+    width: 40%;
     margin: 30 0;
-    border-radius: 20px;
+    border-radius: 5px;
 `;
-const NewUser = ({ values, errors, touched, status }) => {
+const LoginUser = ({ values, errors, touched, status }) => {
     const [user, setUser] = useState([]);
 
     useEffect(() => {
@@ -58,7 +62,6 @@ const NewUser = ({ values, errors, touched, status }) => {
         <MainCont>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <H4Style>Icon</H4Style>
             </NavStyle>
             <div>
                 <h2>Sign in!</h2>
@@ -66,21 +69,34 @@ const NewUser = ({ values, errors, touched, status }) => {
             <Form>
                 <StyledForm>
                     <div>
-                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username'/>
-                        {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
+                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username' />
+                            {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
                         </StyledEntry>
-                        
                     </div>
                     <div>
                         <StyledEntry>Enter Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
-                        {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
+                            {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
                         </StyledEntry>
-                        
                     </div>
                     <StyledButton>Log in</StyledButton>
-                    <Link>Don't Have An Account?</Link>
                 </StyledForm>
             </Form>
         </MainCont>
     )
 }
+
+const FormikLoginUser = withFormik({
+    mapPropsToValues({ name, password }) {
+        return {
+            name: name || '',
+            password: password || ''
+        };
+    },
+
+    validationSchema: Yup.object().shape({
+        name: Yup.string().required('Required field.'),
+        password: Yup.string().required('Required field.')
+    }),
+})(LoginUser);
+
+export default FormikLoginUser;
