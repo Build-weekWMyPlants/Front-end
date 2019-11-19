@@ -47,6 +47,14 @@ const PlantListDiv = styled.div`
     margin-top: 35px;
 `;
 
+const TopDivStyle = styled.div`
+    display: flex;
+    height: 40px;
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 10px;
+`;
+
 const PlantList = props => {
     const [plantList, setPlantList] = useState([])
 
@@ -68,7 +76,28 @@ const PlantList = props => {
                     <FaUserCircle />
                 </Link>
             </NavStyle>
+            <TopDivStyle>
+                <h3 className="plant-list">All Plants</h3>
+                <Link className="add-plant-button" to="/add-plant">
+                <div>Add Plant</div>
+                </Link>
+                </TopDivStyle>
             <MainContain>
+                <PlantListDiv>
+                    <h3>Nickname: </h3>
+                </PlantListDiv>
+                <PlantListDiv>
+                    <h3>Nickname: </h3>
+                </PlantListDiv>
+                <PlantListDiv>
+                    <h3>Nickname: </h3>
+                </PlantListDiv>
+                <PlantListDiv>
+                    <h3>Nickname: </h3>
+                </PlantListDiv>
+                <PlantListDiv>
+                    <h3>Nickname: </h3>
+                </PlantListDiv>
                 <PlantListDiv>
                     <h3>Nickname: </h3>
                 </PlantListDiv>

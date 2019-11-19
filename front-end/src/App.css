@@ -92,3 +92,20 @@ label {
   color: red;
   font-weight: bold;
 }
+
+.plant-list {
+  width: 60%;
+  height: 40px;
+}
+
+.add-plant-button {
+  width: 30%;
+  background-color: steelblue;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  
+}
