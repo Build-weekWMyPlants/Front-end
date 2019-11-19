@@ -27,7 +27,7 @@ export const deletePlant = plant => {
     return dispatch => {
         dispatch(deletePlantStart());
         authAxios
-        .delete(`/api/plants/${plant.id}`, plant)
+        .delete(`/api/plants/${plant.id}`, plant.id)
         .then(response => {
             dispatch(deletePlantSuccess(response))
         })

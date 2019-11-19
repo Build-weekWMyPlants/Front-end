@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withformik, Form, Field } from 'formik';
+import styled from "styled-components"
 import * as yup from 'yup';
 
 const NavStyle = styled.nav`
@@ -26,7 +27,7 @@ const H4Style = styled.h4`
         </NavStyle>
 
 const NewUser = ({ values, errors, touched, status }) => {
-    const [user, setUser] = usetState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         if (status) {
@@ -50,3 +51,4 @@ const NewUser = ({ values, errors, touched, status }) => {
         </div>
     )
 }
+export default NewUser

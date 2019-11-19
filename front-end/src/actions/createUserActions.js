@@ -23,17 +23,18 @@ export const createUserFail = error => ({
   }
 });
 
-export const signUp = (username, phonenumber, password) => {
+export const signUp = (username, password, primaryemail) => {
   const authAxios = axiosWithAuth();
   return dispatch => {
     dispatch(createUserStart());
 
-    authAxios.post("/api/signup", {
+    authAxios.post("/createnewuser", {
       username,
-      phonenumber,
-      password
+      password,
+      primaryemail
     })
     .then(response => {
+        console.log("SIUGNUP SUCCESS", response)
         dispatch(createUserSuccess(response.data))
     })
     .catch(error => {

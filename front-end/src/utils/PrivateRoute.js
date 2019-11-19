@@ -27,7 +27,7 @@ export default function PrivateRoute({children, ...rest}) {
 
 export const axiosWithAuth = () => {
     return axios.create({
-      baseURL: '',
+      baseURL: 'vdtyson-watermyplants.herohuapp.com',
       headers: {
         authorization: localStorage.getItem("token")
       }
