@@ -6,6 +6,8 @@ import './SignUpForm.css';
 import { Link } from 'react-router-dom';
 
 const MainCont = styled.div`
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
     width: 50%;
     margin: 0 auto;
 `;
@@ -13,7 +15,7 @@ const StyledForm = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 100px auto;
+    margin: 40px auto;
 `;
 const StyledEntry = styled.label`
     color: black;
@@ -33,6 +35,12 @@ const H1Style = styled.h1`
     display: flex;
     padding-left: 10px;
     color: white;
+`;
+const H2Styled = styled.h2`
+margin: 15px 0;
+`;
+const H3Styled = styled.h3`
+
 `;
 const H4Style = styled.h4`
     width: 50%;
@@ -63,30 +71,31 @@ const NewUser = ({ values, errors, touched, status }) => {
         <MainCont>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <H4Style>Icon</H4Style>
             </NavStyle>
             <div>
-                <h2>Let's get started</h2>
-                <h3>Create your account</h3>
+                <H2Styled>Let's get started!</H2Styled>
+                <H3Styled>Create your account</H3Styled>
             </div>
             <Form>
                 <StyledForm>
                     <div>
-                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username' />
+                        <StyledEntry>Username<Field className='input-box' type='text' name='name' placeholder='username' />
                             {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
                         </StyledEntry>
-
                     </div>
                     <div>
-                        <StyledEntry>Enter Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx' />
+                        <StyledEntry>Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx' />
                             {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
                         </StyledEntry>
                     </div>
                     <div>
-                        <StyledEntry>Enter Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                        <StyledEntry>Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
                             {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
                         </StyledEntry>
-
+                    </div>
+                    <div>
+                        <StyledEntry>Confirm Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                        </StyledEntry>
                     </div>
                     <StyledButton>Next</StyledButton>
                     <Link>Already Have An Account?</Link>

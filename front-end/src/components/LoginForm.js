@@ -62,7 +62,6 @@ const LoginUser = ({ values, errors, touched, status }) => {
         <MainCont>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <H4Style>Icon</H4Style>
             </NavStyle>
             <div>
                 <h2>Sign in!</h2>
