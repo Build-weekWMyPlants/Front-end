@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { withformik, Form, Field } from 'formik';
+import styled from "styled-components"
 import * as yup from 'yup';
 
 const NavStyle = styled.nav`
@@ -52,3 +53,4 @@ const NewUser = ({ values, errors, touched, status }) => {
         </div>
     )
 }
+export default NewUser
