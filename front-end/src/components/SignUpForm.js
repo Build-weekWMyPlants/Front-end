@@ -24,6 +24,7 @@ const StyledResults = styled.div`
     align-items: center;
 `;
 
+
 const NavStyle = styled.nav`
     display: flex;
     align-items: center;
@@ -96,6 +97,7 @@ const NewUser = ({ values, errors, touched, status }) => {
         </MainCont>
     )
 }
+
 const FormikNewUser = withFormik({
     mapPropsToValues({ name, number, password, terms }) {
         return {
@@ -113,3 +115,5 @@ const FormikNewUser = withFormik({
 })(NewUser);
 
 export default FormikNewUser;
+
+
