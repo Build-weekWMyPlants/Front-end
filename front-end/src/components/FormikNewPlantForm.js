@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import {FaUserCircle} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import Placeholder from "../images/plant.png"
+import { Link } from "react-router-dom";
 import "../../src/App.css"
 
 const NavStyle = styled.nav`
@@ -21,14 +22,6 @@ const H1Style = styled.h1`
 
 `;
 
-const H4Style = styled.h4`
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-    color: white;
-`;
-
 const LogInDivStyled = styled.div`
     width: 50%;
     margin: 0 auto;
@@ -36,7 +29,7 @@ const LogInDivStyled = styled.div`
     justify-content: center;
     flex-direction: column;
     // flex-wrap: wrap;
-    height: 650px;
+    height: 750px;
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
@@ -52,7 +45,7 @@ const MainContain = styled.div`
 
 const ImageDiv = styled.div`
     width: 80%;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 `;
 
 const NewPlant = ({ values, errors, touched }) => {
@@ -60,18 +53,18 @@ const NewPlant = ({ values, errors, touched }) => {
         <div>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <Link className = "icon-style" to="/userprofile">
-                <H4Style><FaUserCircle /></H4Style>
+                <Link className="icon-style" to="/userprofile">
+                    <FaUserCircle />
                 </Link>
             </NavStyle>
-            
+
             <MainContain>
-            <h1>Add a New Plant!</h1>
+                <h1>Add a New Plant!</h1>
                 <LogInDivStyled>
-                    {/* <ImageDiv>
-                        <img src="/" alt="murray placeholder" />
-                    </ImageDiv> */}
-                    <Form className = "form-container">
+                    <ImageDiv>
+                        <img className = "new-plant-image"src={Placeholder} alt="placeholder image of flowers" />
+                    </ImageDiv>
+                    <Form className="form-container">
                         <label>Nickname: </label>
                         <Field
                             className="input-field"
@@ -80,7 +73,7 @@ const NewPlant = ({ values, errors, touched }) => {
                             placeholder="Plant Nickname"
                         />
                         {touched.name && errors.name && (
-                            <p>{errors.name}</p>
+                            <p className="error-message">{errors.name}</p>
                         )}
                         <label>Species: </label>
                         <Field
@@ -90,7 +83,7 @@ const NewPlant = ({ values, errors, touched }) => {
                             placeholder="Species"
                         />
                         {touched.species && errors.species && (
-                            <p>{errors.species}</p>
+                            <p className="error-message">{errors.species}</p>
                         )}
                         <label>Location: </label>
                         <Field
@@ -100,10 +93,10 @@ const NewPlant = ({ values, errors, touched }) => {
                             placeholder="Location"
                         />
                         {touched.location && errors.location && (
-                            <p>{errors.location}</p>
+                            <p className="error-message">{errors.location}</p>
                         )}
                     </Form>
-                    <button className = "button-style">Add Plant!</button>
+                    <button className="button-style">Add Plant!</button>
                 </LogInDivStyled>
             </MainContain>
         </div>

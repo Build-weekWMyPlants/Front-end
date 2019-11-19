@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 import styled from "styled-components";
 
 const NavStyle = styled.nav`
@@ -47,7 +48,9 @@ const Plant = () => {
         <div>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <H4Style>Icon</H4Style>
+                <Link className="icon-style" to="/userprofile">
+                    <FaUserCircle />
+                </Link>
             </NavStyle>
             <MainContain>
                 <h2>Nickname: Planty Planterson</h2>
