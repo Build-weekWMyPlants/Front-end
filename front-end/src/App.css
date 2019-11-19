@@ -27,3 +27,18 @@
   
 }
 
+.button-style {
+  margin-top: 20px;
+  background-color: #235B2D;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-style-plant {
+  margin-top: 20px;
+  background-color: #235B2D;
+  color: white;
+  border-radius: 5px;
+  width: 10%;
+  margin: 0 auto;
+}

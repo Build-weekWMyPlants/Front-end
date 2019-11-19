@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from "styled-components";
 import { withformik, Form, Field } from 'formik';
 import * as yup from 'yup';
 
@@ -20,13 +21,10 @@ const H4Style = styled.h4`
     padding-right: 10px;
     color: white;
 `;
-        <NavStyle>
-            <H1Style>Plant Parenthood</H1Style>
-            <H4Style>Icon</H4Style>
-        </NavStyle>
+      
 
 const NewUser = ({ values, errors, touched, status }) => {
-    const [user, setUser] = usetState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         if (status) {
@@ -36,6 +34,10 @@ const NewUser = ({ values, errors, touched, status }) => {
 
     return (
         <div>
+              {/* <NavStyle>
+            <H1Style>Plant Parenthood</H1Style>
+            <H4Style>Icon</H4Style>
+        </NavStyle>
             <Form>
                 <StyledForm>
                     <div>
@@ -46,7 +48,7 @@ const NewUser = ({ values, errors, touched, status }) => {
                         <StyledEntry>Enter Number<Field type='number' name='number' placeholder='(xxx)-xxx-xxxx'/></StyledEntry>
                     </div>
                 </StyledForm>
-            </Form>
+            </Form> */}
         </div>
     )
 }

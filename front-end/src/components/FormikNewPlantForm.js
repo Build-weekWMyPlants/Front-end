@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import {Link} from "react-router-dom";
 import "../../src/App.css"
 
 const NavStyle = styled.nav`
     display: flex;
     align-items: center;
     background-color: #235B2D;
+    height: 7vh;
 `;
 
 const H1Style = styled.h1`
@@ -31,19 +33,24 @@ const LogInDivStyled = styled.div`
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    height: 600px;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    height: 650px;
     align-items: center;
-    border: 2px solid red;
+    border: 1px solid black;
+    border-radius: 5px;
 `;
 
 const MainContain = styled.div`
-    height: 86vh;
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `;
 
 const ImageDiv = styled.div`
-    border: 2px solid red;
     width: 80%;
+    padding-bottom: 20px;
 `;
 
 const NewPlant = ({ values, errors, touched }) => {
@@ -53,8 +60,9 @@ const NewPlant = ({ values, errors, touched }) => {
                 <H1Style>Plant Parenthood</H1Style>
                 <H4Style>Icon</H4Style>
             </NavStyle>
-            <h1>Create A New Plant Profile!</h1>
+            
             <MainContain>
+            <h1>Add a New Plant!</h1>
                 <LogInDivStyled>
                     <ImageDiv>
                         <img src="https://www.fillmurray.com/200/300" alt="murray placeholder" />
@@ -94,6 +102,7 @@ const NewPlant = ({ values, errors, touched }) => {
                             <p>{errors.location}</p>
                         )}
                     </Form>
+                    <button className = "button-style">Add Plant!</button>
                 </LogInDivStyled>
             </MainContain>
         </div>
