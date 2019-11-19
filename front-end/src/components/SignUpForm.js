@@ -23,8 +23,6 @@ const StyledResults = styled.div`
     flex-direction: column;
     align-items: center;
 `;
-
-
 const NavStyle = styled.nav`
     display: flex;
     align-items: center;
@@ -47,9 +45,9 @@ const StyledButton = styled.button`
     background-color: #235B2D;
     border: 1px solid #235B2D;
     color: white;
-    width: 80%;
+    width: 40%;
     margin: 30 0;
-    border-radius: 20px;
+    border-radius: 5px;
 `;
 
 const NewUser = ({ values, errors, touched, status }) => {
@@ -80,8 +78,8 @@ const NewUser = ({ values, errors, touched, status }) => {
                         
                     </div>
                     <div>
-                        <StyledEntry>Enter Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx'/>
-                        {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
+                        <StyledEntry>Enter Email<Field className='input-box' type='email' name='email' placeholder='example@gmail.com'/>
+                        {touched.email && errors.email && (<p className='error'>{errors.email}</p>)}
                         </StyledEntry>
                     </div>
                     <div>
@@ -99,17 +97,17 @@ const NewUser = ({ values, errors, touched, status }) => {
 }
 
 const FormikNewUser = withFormik({
-    mapPropsToValues({ name, number, password, terms }) {
+    mapPropsToValues({ name, email, password }) {
         return {
             name: name || '',
-            number: number || '',
+            email: email || '',
             password: password || ''
         };
     },
 
     validationSchema: Yup.object().shape({
         name: Yup.string().min(3, 'Name must have more than three character.').required('Required field.'),
-        number: Yup.string().min(10, 'Number must have at least 10 numbers.').required('Required field.'),
+        email: Yup.string().email('Email not valid.').required('Required field.'),
         password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.')
     }),
 })(NewUser);
