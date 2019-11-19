@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Route path="/add-plant" render={props => <FormikNewPlantForm />} />
       <Route path="/plant/" render={props => <Plant {...props} />} />
-      <Route path="/plantpractice" render={props => <PlantList />} />
+      <Route path="/user/:id/plants" render={props => <PlantList {...props} />} />
       <Route path ="/userprofile" render ={props=> <UserProfile />} />
       <Route path='/sign-up' render={props => <FormikNewUser />}/>
     </div>

@@ -39,6 +39,7 @@ const LogInDivStyled = styled.div`
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
+    
 `;
 
 const MainContain = styled.div`
@@ -64,10 +65,11 @@ const NewPlant = ({ values, errors, touched }) => {
             <MainContain>
             <h1>Add a New Plant!</h1>
                 <LogInDivStyled>
-                    <ImageDiv>
-                        <img src="https://www.fillmurray.com/200/300" alt="murray placeholder" />
-                    </ImageDiv>
-                    <Form>
+                    {/* <ImageDiv>
+                        <img src="/" alt="murray placeholder" />
+                    </ImageDiv> */}
+                    <Form className = "form-container">
+                        <label>Nickname: </label>
                         <Field
                             className="input-field"
                             type="text"
@@ -77,6 +79,7 @@ const NewPlant = ({ values, errors, touched }) => {
                         {touched.name && errors.name && (
                             <p>{errors.name}</p>
                         )}
+                        <label>Species: </label>
                         <Field
                             className="input-field"
                             type="text"
@@ -86,12 +89,7 @@ const NewPlant = ({ values, errors, touched }) => {
                         {touched.species && errors.species && (
                             <p>{errors.species}</p>
                         )}
-                        <Field className="input-field" as="select" name="maintenance" placeholder="Maintenance Level">
-                            <option>Maintenance Level</option>
-                            <option value="low">Low</option>
-                            <option value="mid">Mid</option>
-                            <option value="high">High</option>
-                        </Field>
+                        <label>Location: </label>
                         <Field
                             className="input-field"
                             type="text"
@@ -110,18 +108,16 @@ const NewPlant = ({ values, errors, touched }) => {
 }
 
 const FormikNewPlantForm = withFormik({
-    mapPropsToValues({ name, species, maintenance, location }) {
+    mapPropsToValues({ name, species, location }) {
         return {
             name: name || "",
             species: species || "",
-            maintenance: maintenance || "",
             location: location || ""
         };
     },
     validationSchema: Yup.object().shape({
         name: Yup.string().required("Please provide your plant with a nickname!"),
         species: Yup.string().required("Type of Plant is required!"),
-        maintenance: Yup.string().required(),
         location: Yup.string().required("Please specify where your plant is located!")
     }),
 

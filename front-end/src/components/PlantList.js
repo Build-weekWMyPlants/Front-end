@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const NavStyle = styled.nav`
     display: flex;
@@ -38,6 +39,16 @@ const MainContain = styled.div`
 const PlantList = props => {
     const [plantList, setPlantList] = useState([])
 
+    useEffect(() => {
+        axios.get('')
+        .then(response => {
+            setPlantList()
+        })
+        .catch(error => {
+            console.log("Something went wrong!", error)
+        })
+    },[])
+
     return (
         <div>
             <NavStyle>
@@ -45,7 +56,9 @@ const PlantList = props => {
                 <H4Style>Icon</H4Style>
             </NavStyle>
             <MainContain>
-                <h1>WIP</h1>
+                <div>
+                    <h3>Nickname: </h3>
+                </div>
             </MainContain>
         </div>
 

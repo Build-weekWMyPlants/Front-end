@@ -23,7 +23,9 @@
 
 .input-field {
   width: 80%;
+  height: 50px;
   margin-top: 10px;
+  border-radius: 5px;
   
 }
 
@@ -42,7 +44,23 @@
   width: 10%;
   margin: 0 auto;
 }
-.location-field {
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
   width: 80%;
+  align-items: center;
 }
 
+label {
+  display: flex;
+  width: 80%;
+  padding-top: 5px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  width: 10%;
+}
