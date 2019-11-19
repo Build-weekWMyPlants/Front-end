@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -57,8 +57,11 @@ const Plant = () => {
                 <h3>Species: Succulent</h3>
                 <h3>Location: Kitchen Window</h3>
                 <h3>Last Time Watered: </h3>
-                <button className="button-style-plant">Edit</button>
-                <button className="delete-button">Delete</button>
+                <div>
+                    <button className="watered-button">Watered</button>
+                    <button className="button-style-plant">Edit</button>
+                    <button className="delete-button">Delete</button>
+                </div>
             </MainContain>
         </div>
     );

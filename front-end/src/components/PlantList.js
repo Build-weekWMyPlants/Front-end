@@ -31,9 +31,19 @@ const MainContain = styled.div`
     width: 900px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 2px solid red;
+    // flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+`;
+
+const PlantListDiv = styled.div`
+    border: 1px solid black;
+    height: 250px;
+    width: 250px;
+    display: flex;
+    padding-left: 5px;
+    align-items: center;
+    margin-top: 35px;
 `;
 
 const PlantList = props => {
@@ -41,13 +51,13 @@ const PlantList = props => {
 
     useEffect(() => {
         axios.get('')
-        .then(response => {
-            setPlantList()
-        })
-        .catch(error => {
-            console.log("Something went wrong!", error)
-        })
-    },[])
+            .then(response => {
+                setPlantList()
+            })
+            .catch(error => {
+                console.log("Something went wrong!", error)
+            })
+    }, [])
 
     return (
         <div>
@@ -56,9 +66,9 @@ const PlantList = props => {
                 <H4Style>Icon</H4Style>
             </NavStyle>
             <MainContain>
-                <div>
+                <PlantListDiv>
                     <h3>Nickname: </h3>
-                </div>
+                </PlantListDiv>
             </MainContain>
         </div>
 

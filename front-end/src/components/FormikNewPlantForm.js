@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import {FaUserCircle} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import "../../src/App.css"
 
@@ -59,7 +60,9 @@ const NewPlant = ({ values, errors, touched }) => {
         <div>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <H4Style>Icon</H4Style>
+                <Link className = "icon-style" to="/userprofile">
+                <H4Style><FaUserCircle /></H4Style>
+                </Link>
             </NavStyle>
             
             <MainContain>
