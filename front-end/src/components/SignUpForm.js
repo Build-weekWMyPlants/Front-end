@@ -72,21 +72,21 @@ const NewUser = ({ values, errors, touched, status }) => {
             <Form>
                 <StyledForm>
                     <div>
-                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username'/>
-                        {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
+                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username' />
+                            {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
                         </StyledEntry>
-                        
+
                     </div>
                     <div>
-                        <StyledEntry>Enter Email<Field className='input-box' type='email' name='email' placeholder='example@gmail.com'/>
-                        {touched.email && errors.email && (<p className='error'>{errors.email}</p>)}
+                        <StyledEntry>Enter Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx' />
+                            {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
                         </StyledEntry>
                     </div>
                     <div>
                         <StyledEntry>Enter Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
-                        {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
+                            {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
                         </StyledEntry>
-                        
+
                     </div>
                     <StyledButton>Next</StyledButton>
                     <Link>Already Have An Account?</Link>
@@ -97,17 +97,17 @@ const NewUser = ({ values, errors, touched, status }) => {
 }
 
 const FormikNewUser = withFormik({
-    mapPropsToValues({ name, email, password }) {
+    mapPropsToValues({ name, number, password }) {
         return {
             name: name || '',
-            email: email || '',
+            number: number || '',
             password: password || ''
         };
     },
 
     validationSchema: Yup.object().shape({
-        name: Yup.string().min(3, 'Name must have more than three character.').required('Required field.'),
-        email: Yup.string().email('Email not valid.').required('Required field.'),
+        name: Yup.string().min(3, 'Name must have more than 3 characters.').required('Required field.'),
+        number: Yup.string().min(10, 'Number must be 10 characters.').required('Required field.'),
         password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.')
     }),
 })(NewUser);

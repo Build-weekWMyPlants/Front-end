@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from 'axios';
+import { FaUserCircle } from 'react-icons/fa';
 
 const NavStyle = styled.nav`
     display: flex;
@@ -13,7 +15,6 @@ const H1Style = styled.h1`
     display: flex;
     padding-left: 10px;
     color: white;
-
 `;
 
 const H4Style = styled.h4`
@@ -35,16 +36,38 @@ const MainContain = styled.div`
 `;
 
 const UserProfile = () => {
+
+    const [userPhoto, setUserPhoto] = useState([]);
+
+    useEffect(() => {
+        axios.get(``)
+        .then (response => {
+            console.log(response);
+            setUserPhoto(response.data);
+        })
+        .catch(err => {
+            console.log('Identity theft is not a joke! Now we gotta fix it.');
+        });
+    }, [])
+
     return (
         <div>
             <NavStyle>
                 <H1Style>Plant Parenthood</H1Style>
-                <H4Style>Icon</H4Style>
+                <H4Style><FaUserCircle /></H4Style>
             </NavStyle>
             <MainContain>
-                <h1>WIP</h1>
+                <img className='ImgPlaceholder' src='./images/placeholder-plant.jpg'/>
+                <button>Update Photo</button>
+                <div>
+                    <h4>Username</h4>
+                    <p>This is the Username placeholder</p>
+                </div>
+                <div>
+                    <h4>Password</h4>
+                    <p>This is the Password placeholder</p>
+                </div>
             </MainContain>
-
         </div>
     );
 }

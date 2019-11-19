@@ -70,13 +70,13 @@ const LoginUser = ({ values, errors, touched, status }) => {
             <Form>
                 <StyledForm>
                     <div>
-                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username'/>
-                        {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
+                        <StyledEntry>Enter Username<Field className='input-box' type='text' name='name' placeholder='username' />
+                            {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
                         </StyledEntry>
                     </div>
                     <div>
                         <StyledEntry>Enter Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
-                        {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
+                            {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
                         </StyledEntry>
                     </div>
                     <StyledButton>Log in</StyledButton>
