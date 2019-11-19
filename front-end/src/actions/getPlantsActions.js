@@ -18,13 +18,13 @@ export const getPlantFail = error => ({
   payload: error
 });
 
-export const getPlants = () => {
+export const getPlants = (user) => {
   return function(dispatch) {
     dispatch(getPlantsStart());
 
     const authAxios = axiosWithAuth();
     authAxios
-      .get(`/api/plants/${userid}`)
+      .get(`/api/plants/${user.id}`)
       .then(response => {
         dispatch(getPlantsSuccess(response.data));
         console.log(response.data);
