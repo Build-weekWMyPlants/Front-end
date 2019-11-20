@@ -1,30 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 import axios from 'axios';
-import { FaUserCircle } from 'react-icons/fa';
+import Nav from "./Nav";
 import plant from '../images/placeholder-plant.jpg';
-
-const NavStyle = styled.nav`
-    display: flex;
-    align-items: center;
-    background-color: #235B2D;
-    height: 7vh;
-`;
-
-const H1Style = styled.h1`
-    width: 50%;
-    display: flex;
-    padding-left: 10px;
-    color: white;
-`;
-
-const H4Style = styled.h4`
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-    color: white;
-`;
 
 const MainContain = styled.div`
     height: 93vh;
@@ -58,10 +37,7 @@ const UserProfile = () => {
 
     return (
         <div>
-            <NavStyle>
-                <H1Style>Plant Parenthood</H1Style>
-                <H4Style><FaUserCircle /></H4Style>
-            </NavStyle>
+            <Nav/>
             <MainContain>
                 <ImgPlaceholder src={plant} />
                 <button>Update Photo</button>

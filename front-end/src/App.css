@@ -75,12 +75,19 @@ label {
 }
 
 .icon-style {
-    width: 50%;
+    width: 5%;
     display: flex;
     justify-content: flex-end;
     padding-right: 15px;
     color: white;
     font-size: 30px;
+    
+}
+
+.plant-icon {
+  color: white;
+  font-size: 30px;
+  display: flex;
 }
 
 .new-plant-image {

@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "./SignUpForm.css";
+import NavSignLog from "./NavSignLog";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signUp } from "../actions/createUserActions";
@@ -26,24 +27,6 @@ const StyledResults = styled.div`
   align-items: center;
 `;
 
-const NavStyle = styled.nav`
-  display: flex;
-  align-items: center;
-  background-color: #235b2d;
-`;
-const H1Style = styled.h1`
-  width: 50%;
-  display: flex;
-  padding-left: 10px;
-  color: white;
-`;
-const H4Style = styled.h4`
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 10px;
-  color: white;
-`;
 const StyledButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;
@@ -80,10 +63,7 @@ const NewUser = ({ history,signUp, values, errors, touched, status }) => {
 
   return (
     <MainCont>
-      <NavStyle>
-        <H1Style>Plant Parenthood</H1Style>
-        <H4Style>Icon</H4Style>
-      </NavStyle>
+      <NavSignLog />
       <div>
         <h2>Let's get started</h2>
         <h3>Create your account</h3>
