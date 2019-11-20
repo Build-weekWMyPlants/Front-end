@@ -1,31 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
-
-const NavStyle = styled.nav`
-    display: flex;
-    align-items: center;
-    background-color: #235B2D;
-    height: 7vh;
-`;
-
-const H1Style = styled.h1`
-    width: 50%;
-    display: flex;
-    padding-left: 10px;
-    color: white;
-
-`;
-
-const H4Style = styled.h4`
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-    color: white;
-`;
 
 const MainContain = styled.div`
     height: 93vh;
@@ -59,8 +36,9 @@ const PlantList = props => {
     const [plantList, setPlantList] = useState([])
 
     useEffect(() => {
-        axios.get('')
+        axios.get('https://vdtyson-watermyplants.herokuapp.com/plants/user/4')
             .then(response => {
+                console.log(response)
                 setPlantList()
             })
             .catch(error => {
@@ -70,12 +48,7 @@ const PlantList = props => {
 
     return (
         <div>
-            <NavStyle>
-                <H1Style>Plant Parenthood</H1Style>
-                <Link className="icon-style" to="/userprofile">
-                    <FaUserCircle />
-                </Link>
-            </NavStyle>
+            <Nav />
             <TopDivStyle>
                 <h3 className="plant-list">All Plants</h3>
                 <Link className="add-plant-button" to="/add-plant">

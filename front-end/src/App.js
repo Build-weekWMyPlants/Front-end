@@ -14,6 +14,7 @@ import FormikNewUser from "./components/SignUpForm";
 function App() {
   return (
     <div className="App">
+
       <PrivateRoute path="/plantpractice">
       <Route
           path="/add-plant"
@@ -33,6 +34,7 @@ function App() {
       </PrivateRoute>
       
       <Route path="/sign-up" render={props => <FormikNewUser {...props} />} />
+
       <Route exact path="/login" render={props => <LoginForm {...props} />} />
     </div>
   );

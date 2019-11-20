@@ -2,26 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { withFormik, Form, Field, connect } from "formik";
 import * as Yup from "yup";
-import { FaUserCircle } from "react-icons/fa";
+import Nav from "./Nav";
 import Placeholder from "../images/plant.png"
 import { postPlant } from "../actions/postPlantActions"
 import { Link } from "react-router-dom";
 import "../../src/App.css"
-
-const NavStyle = styled.nav`
-    display: flex;
-    align-items: center;
-    background-color: #235B2D;
-    height: 7vh;
-`;
-
-const H1Style = styled.h1`
-    width: 50%;
-    display: flex;
-    padding-left: 10px;
-    color: white;
-
-`;
 
 const LogInDivStyled = styled.div`
     width: 50%;
@@ -52,13 +37,7 @@ const ImageDiv = styled.div`
 const NewPlant = ({ postPlant,values, errors, touched }) => {
     return (
         <div>
-            <NavStyle>
-                <H1Style>Plant Parenthood</H1Style>
-                <Link className="icon-style" to="/userprofile">
-                    <FaUserCircle />
-                </Link>
-            </NavStyle>
-
+            <Nav />
             <MainContain>
                 <h1>Add a New Plant!</h1>
                 <LogInDivStyled>
