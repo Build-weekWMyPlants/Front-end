@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
 import Nav from "./Nav";
-import Placeholder from "../images/plant.png";
 import { postPlant } from "../actions/postPlantActions";
-import { Link } from "react-router-dom";
 import "../../src/App.css";
 import { connect } from "react-redux";
 
@@ -34,13 +30,12 @@ const ImageDiv = styled.div`
   padding-bottom: 10px;
 `;
 
-const NewPlant = ({ postPlant, values, errors, touched }) => {
+const NewPlant = ({ postPlant }) => {
   const [plant, setPlant] = useState({
     nickname: "",
     photo: "",
     plantType: ""
   });
-
 
   const handleChange = e => {
     setPlant({
@@ -57,64 +52,45 @@ const NewPlant = ({ postPlant, values, errors, touched }) => {
   return (
     <div>
       <Nav />
-      <h1>Hello</h1>
+      <h1>Add A Plant</h1>
       <form onSubmit={handleSubmit}>
-      <label htmlFor="name"></label>
-      <input
-        type="text"
-        name="nickname"
-        id="nickname"
-        value={plant.nickname}
-        onChange={handleChange}
-        placeholder="Plant Nickname"
-      />
+        <label htmlFor="name"></label>
+        <input
+          type="text"
+          name="nickname"
+          id="nickname"
+          value={plant.nickname}
+          onChange={handleChange}
+          placeholder="Plant Nickname"
+        />
 
-      <label htmlFor="age"></label>
-      <input
-        type="text"
-        name="photo"
-        id="photo"
-        value={plant.photo}
-        onChange={handleChange}
-        placeholder="Photo URL"
-      />
+        <label htmlFor="age"></label>
+        <input
+          type="text"
+          name="photo"
+          id="photo"
+          value={plant.photo}
+          onChange={handleChange}
+          placeholder="Photo URL"
+        />
 
-      <label htmlFor="height"></label>
-      <input
-        type="text"
-        name="plantType"
-        id="plantType"
-        value={plant.plantType}
-        onChange={handleChange}
-        placeholder="Plant Type"
-      />
+        <label htmlFor="height"></label>
+        <input
+          type="text"
+          name="plantType"
+          id="plantType"
+          value={plant.plantType}
+          onChange={handleChange}
+          placeholder="Plant Type"
+        />
 
-      <button  type="submit" >Add Plant</button>
-    </form>
+        <button type="submit">Add Plant</button>
+      </form>
     </div>
   );
 };
 
-// const formikNewPlant = withFormik({
-//   mapPropsToValues({ nickname, photo, plantType }) {
-//     return {
-//       nickname: nickname || "",
-//       photo: photo || "",
-//       plantType: plantType || ""
-//     };
-//   },
-//   handleSubmit(values, formikBag) {
-//     console.log(values);
-//     formikBag.props.postPlant(values);
-//   },
-//   validationSchema: Yup.object().shape({
-//     nickname: Yup.string().required("Please provide a nickname for your plant"),
-//     photo: Yup.string().required("Please provide a photo for your plant"),
-//     plantType: Yup.string().required("please include a plant type")
-//   })
-// })(NewPlant);
 const mapDispatchToProps = {
   postPlant
 };
 export default connect(state => state, mapDispatchToProps)(NewPlant);
-// export default formikNewPlant;

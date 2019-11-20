@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
-import NavSignLog from "./NavSignLog"
+import NavSignLog from "./NavSignLog";
 import { connect } from "react-redux";
 import { login } from "../actions/LoginActions";
 import { withFormik, Form, Field } from "formik";
@@ -20,11 +19,11 @@ const StyledForm = styled.div`
   margin: 100px auto;
 `;
 const StyledDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin: 0 auto;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 auto;
+  margin-bottom: 20px;
 `;
 const StyledEntry = styled.label`
   color: black;
@@ -36,7 +35,7 @@ const StyledResults = styled.div`
   align-items: center;
 `;
 const FormDiv = styled.div`
-    margin: 10px 0;
+  margin: 10px 0;
 `;
 const NavStyle = styled.nav`
   display: flex;
@@ -57,50 +56,19 @@ const StyledButton = styled.button`
   margin: 30 0;
   border-radius: 20px;
 `;
-const NewUser = ({ values, errors, touched, status, login}) => {
+const NewUser = ({ values, errors, touched, status, login }) => {
   const [user, setUser] = useState([]);
   const [data, setData] = useState({
     username: "",
     password: ""
   });
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  // const handleChange = e => {
-  //   setData({
-  //     ...data,
-  //     [e.target.name]: e.target.value
-      
-  //   });
-    
-  // };
-const logOut = e => {
-  e.preventDefault();
-  localStorage.clear("token");
-  setLoggedIn(false);
-}
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   login(data);
-  //   console.log(data)
-  //   // setLoggedIn(true);
-  //   // history.push("/plantpractice")
-  // };
-
-  
-  // const axiosLogin = () => {
-
-  //     axios
-  //     .post("https://vdtyson-watermyplants.herokuapp.com/login", data)
-  //     .then(response => {
-  //         console.log(data);
-  //         const { data } = response;
-  //         localStorage.setItem("token", data.payload)
-  //     })
-  //     .catch(error=> {
-  //         console.log("LOGIN ERROR", error, data)
-  //     })
-  // }
-  
+  const logOut = e => {
+    e.preventDefault();
+    localStorage.clear("token");
+    setLoggedIn(false);
+  };
 
   useEffect(() => {
     if (status) {
@@ -114,13 +82,11 @@ const logOut = e => {
       <div>
         <h2>{loggedIn ? "Logged in" : "Please login"}</h2>
       </div>
-      <Form >
+      <Form>
         <StyledForm>
-            <StyledDiv>
-          <FormDiv>
-            <StyledEntry>
-              Enter Username
-              </StyledEntry>
+          <StyledDiv>
+            <FormDiv>
+              <StyledEntry>Enter Username</StyledEntry>
               <Field
                 className="input-box"
                 type="text"
@@ -133,9 +99,7 @@ const logOut = e => {
               )}
             </FormDiv>
             <FormDiv>
-            <StyledEntry>
-              Enter Password
-            </StyledEntry>
+              <StyledEntry>Enter Password</StyledEntry>
               <Field
                 className="input-box"
                 type="password"
@@ -146,7 +110,7 @@ const logOut = e => {
               {touched.password && errors.password && (
                 <p className="error">{errors.password}</p>
               )}
-          </FormDiv>
+            </FormDiv>
           </StyledDiv>
           <StyledButton type="submit">Log in</StyledButton>
           <StyledButton onClick={logOut}>Log out</StyledButton>
@@ -158,20 +122,20 @@ const logOut = e => {
 };
 
 const FormikLogin = withFormik({
-  mapPropsToValues({ username, password}) {
+  mapPropsToValues({ username, password }) {
     return {
       username: username || "",
       password: password || ""
     };
   },
-  handleSubmit(values, formikBag){formikBag.props.login(values)},
+  handleSubmit(values, formikBag) {
+    formikBag.props.login(values);
+  },
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Required field."),
     password: Yup.string().required("Required field.")
   })
 })(NewUser);
-
-// export default (FormikLogin)
 
 const mapDispatchToProps = {
   login
