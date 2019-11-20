@@ -16,6 +16,7 @@ function App() {
       <Route path="/user/id/plants" render={props => <PlantList {...props} />} />
       <Route path="/userprofile" render={props => <UserProfile />} />
       <Route path='/sign-up' render={props => <FormikNewUser />} />
+      <Route path='/login' render={props => <FormikNewUser />} />
     </div>
   );
 }

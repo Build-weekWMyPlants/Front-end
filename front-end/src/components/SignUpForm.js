@@ -19,6 +19,7 @@ const StyledForm = styled.div`
 `;
 const StyledEntry = styled.label`
     color: black;
+    width: 
 `;
 const StyledResults = styled.div`
     display: flex;
@@ -95,6 +96,7 @@ const NewUser = ({ values, errors, touched, status }) => {
                     </div>
                     <div>
                         <StyledEntry>Confirm Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                            {/* {touched.confirm && errors.confirm && (<p className='error'>{errors.confirm}</p>)} */}
                         </StyledEntry>
                     </div>
                     <StyledButton>Next</StyledButton>
@@ -106,18 +108,20 @@ const NewUser = ({ values, errors, touched, status }) => {
 }
 
 const FormikNewUser = withFormik({
-    mapPropsToValues({ name, number, password }) {
+mapPropsToValues({ name, number, password, /*confirm*/ }) {
         return {
             name: name || '',
             number: number || '',
-            password: password || ''
+            password: password || '',
+            // confirm: confirm || ''
         };
     },
 
     validationSchema: Yup.object().shape({
         name: Yup.string().min(3, 'Name must have more than 3 characters.').required('Required field.'),
         number: Yup.string().min(10, 'Number must be 10 characters.').required('Required field.'),
-        password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.')
+        password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.'),
+        // confirm: Yup.string()
     }),
 })(NewUser);
 
