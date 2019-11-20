@@ -54,13 +54,6 @@ const H3Styled = styled.h3`
     font-size: 25px;
     margin-top: 20px;
 `;
-const H4Style = styled.h4`
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 10px;
-  color: white;
-`;
 const StyledButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;
@@ -127,7 +120,7 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
                         </FormDiv>    
                     </StyledDiv>
                     <StyledButton>Next</StyledButton>
-                    <Link className='AccountLink'>Already Have An Account?</Link>
+                    <Link to='/login' className='accountLink'>Already Have An Account?</Link>
                 </StyledForm>
             </Form>
         </MainCont>
