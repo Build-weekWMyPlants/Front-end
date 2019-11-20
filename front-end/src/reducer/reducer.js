@@ -9,6 +9,11 @@ import {
   CREATE_USER_FAIL
 } from "../actions/createUserActions";
 
+import {
+  POST_PLANT_START,
+  POST_PLANT_SUCCESS,
+  POST_PLANT_FAIL
+} from "../actions/postPlantActions";
 // import {
 //   DELETE_PLANT_START,
 //   DELETE_PLANT_SUCCESS,
@@ -27,18 +32,13 @@ import {
 //   GET_PLANTS_FAIL
 // } from "../actions/getPlantsActions";
 
-// import {
-//   POST_PLANT_START,
-//   POST_PLANT_SUCCESS,
-//   POST_PLANT_FAIL
-// } from "../actions/postPlantActions";
+
 
 const newUserState = () => ({
   username: "",
   password: "",
   primaryemail: ""
 });
-
 
 export const signUpreducer = (state = newUserState, action) => {
   switch (action.type) {
@@ -76,15 +76,42 @@ export const loginReducer = (state = userState, action) => {
       };
     case LOGIN_SUCCESS:
       return {
-        ...state,
-        
+        ...state
       };
     case LOGIN_FAIL:
       return {
         ...state,
         error: action.payload
       };
-      default: 
+    default:
       return state;
+  }
+};
+
+const newPlantState = () => ({
+  nickname: "",
+  photo: "",
+  plantType: ""
+});
+export const addPlantReducer = (state = newPlantState, action) => {
+  switch (action.type) {
+    case POST_PLANT_START:
+      return {
+        ...state,
+        ninckname: action.payload,
+        photo: action.payload,
+        plantType: action.payload
+      };
+    case POST_PLANT_SUCCESS:
+      return {
+        ...state
+      };
+    case POST_PLANT_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+      default: 
+      return state
   }
 };

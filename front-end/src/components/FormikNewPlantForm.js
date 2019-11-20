@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { withFormik, Form, Field } from "formik";
+import { withFormik, Form, Field, connect } from "formik";
 import * as Yup from "yup";
 import { FaUserCircle } from "react-icons/fa";
 import Placeholder from "../images/plant.png"
+import { postPlant } from "../actions/postPlantActions"
 import { Link } from "react-router-dom";
 import "../../src/App.css"
 
@@ -48,7 +49,7 @@ const ImageDiv = styled.div`
     padding-bottom: 10px;
 `;
 
-const NewPlant = ({ values, errors, touched }) => {
+const NewPlant = ({ postPlant,values, errors, touched }) => {
     return (
         <div>
             <NavStyle>
@@ -111,6 +112,7 @@ const FormikNewPlantForm = withFormik({
             location: location || ""
         };
     },
+    handleSubmit(values, formikBag){formikBag.props.addPlant(values)},
     validationSchema: Yup.object().shape({
         name: Yup.string().required("Please provide your plant with a nickname!"),
         species: Yup.string().required("Type of Plant is required!"),
@@ -121,4 +123,8 @@ const FormikNewPlantForm = withFormik({
 
 })(NewPlant)
 
-export default FormikNewPlantForm;
+// export default FormikNewPlantForm;
+const mapDispatchToProps ={
+
+}
+export default connect(state=> state, mapDispatchToProps)(FormikNewPlantForm)

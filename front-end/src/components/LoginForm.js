@@ -68,11 +68,11 @@ const NewUser = ({ values, errors, touched, status, login}) => {
   //   });
     
   // };
-// const logOut = e => {
-//   e.preventDefault();
-//   localStorage.clear("token");
-//   setLoggedIn(false);
-// }
+const logOut = e => {
+  e.preventDefault();
+  localStorage.clear("token");
+  setLoggedIn(false);
+}
   // const handleSubmit = e => {
   //   e.preventDefault();
   //   login(data);
@@ -81,8 +81,8 @@ const NewUser = ({ values, errors, touched, status, login}) => {
   //   // history.push("/plantpractice")
   // };
 
-  //
-  // const login = () => {
+  
+  // const axiosLogin = () => {
 
   //     axios
   //     .post("https://vdtyson-watermyplants.herokuapp.com/login", data)
@@ -95,7 +95,7 @@ const NewUser = ({ values, errors, touched, status, login}) => {
   //         console.log("LOGIN ERROR", error, data)
   //     })
   // }
-  //
+  
 
   useEffect(() => {
     if (status) {
@@ -146,7 +146,7 @@ const NewUser = ({ values, errors, touched, status, login}) => {
             </StyledEntry>
           </div>
           <StyledButton type="submit">Log in</StyledButton>
-          {/* <StyledButton onClick={logOut}>Log out</StyledButton> */}
+          <StyledButton onClick={logOut}>Log out</StyledButton>
           <Link to="/sign-up">Don't Have An Account?</Link>
         </StyledForm>
       </Form>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import { signUpreducer, loginReducer } from "./reducer/reducer";
+import { signUpreducer, loginReducer, addPlantReducer } from "./reducer/reducer";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
@@ -13,7 +13,8 @@ import * as serviceWorker from "./serviceWorker";
 const store = createStore(
   combineReducers({
     signup: signUpreducer,
-    login: loginReducer
+    login: loginReducer,
+    postPlant: addPlantReducer
   }), applyMiddleware(thunk)
 );
 
