@@ -1,109 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { withFormik, Form, Field, connect } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import Nav from "./Nav";
-import Placeholder from "../images/plant.png"
-import { postPlant } from "../actions/postPlantActions"
+import Placeholder from "../images/plant.png";
+import { postPlant } from "../actions/postPlantActions";
 import { Link } from "react-router-dom";
-import "../../src/App.css"
+import "../../src/App.css";
+import { connect } from "react-redux";
 
 const LogInDivStyled = styled.div`
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    // flex-wrap: wrap;
-    height: 750px;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 5px;
-    
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  height: 750px;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
 `;
 
 const MainContain = styled.div`
-    height: 93vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const ImageDiv = styled.div`
-    width: 80%;
-    padding-bottom: 10px;
+  width: 80%;
+  padding-bottom: 10px;
 `;
 
-const NewPlant = ({ postPlant,values, errors, touched }) => {
-    return (
-        <div>
-            <Nav />
-            <MainContain>
-                <h1>Add a New Plant!</h1>
-                <LogInDivStyled>
-                    <ImageDiv>
-                        <img className = "new-plant-image"src={Placeholder} alt="placeholder image of flowers" />
-                    </ImageDiv>
-                    <Form className="form-container">
-                        <label>Nickname: </label>
-                        <Field
-                            className="input-field"
-                            type="text"
-                            name="name"
-                            placeholder="Plant Nickname"
-                        />
-                        {touched.name && errors.name && (
-                            <p className="error-message">{errors.name}</p>
-                        )}
-                        <label>Species: </label>
-                        <Field
-                            className="input-field"
-                            type="text"
-                            name="species"
-                            placeholder="Species"
-                        />
-                        {touched.species && errors.species && (
-                            <p className="error-message">{errors.species}</p>
-                        )}
-                        <label>Location: </label>
-                        <Field
-                            className="input-field"
-                            type="text"
-                            name="location"
-                            placeholder="Location"
-                        />
-                        {touched.location && errors.location && (
-                            <p className="error-message">{errors.location}</p>
-                        )}
-                    </Form>
-                    <button className="button-style">Add Plant!</button>
-                </LogInDivStyled>
-            </MainContain>
-        </div>
-    );
-}
-
-const FormikNewPlantForm = withFormik({
-    mapPropsToValues({ name, species, location }) {
-        return {
-            name: name || "",
-            species: species || "",
-            location: location || ""
-        };
-    },
-    handleSubmit(values, formikBag){formikBag.props.addPlant(values)},
-    validationSchema: Yup.object().shape({
-        name: Yup.string().required("Please provide your plant with a nickname!"),
-        species: Yup.string().required("Type of Plant is required!"),
-        location: Yup.string().required("Please specify where your plant is located!")
-    }),
+const NewPlant = ({ postPlant, values, errors, touched }) => {
+  const [plant, setPlant] = useState({
+    nickname: "",
+    photo: "",
+    plantType: ""
+  });
 
 
+  const handleChange = e => {
+    setPlant({
+      ...plant,
+      [e.target.name]: e.target.value
+    });
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    postPlant(plant);
+    console.log(plant);
+  };
 
-})(NewPlant)
+  return (
+    <div>
+      <Nav />
+      <h1>Hello</h1>
+      <form onSubmit={handleSubmit}>
+      <label htmlFor="name"></label>
+      <input
+        type="text"
+        name="nickname"
+        id="nickname"
+        value={plant.nickname}
+        onChange={handleChange}
+        placeholder="Plant Nickname"
+      />
 
-// export default FormikNewPlantForm;
-const mapDispatchToProps ={
+      <label htmlFor="age"></label>
+      <input
+        type="text"
+        name="photo"
+        id="photo"
+        value={plant.photo}
+        onChange={handleChange}
+        placeholder="Photo URL"
+      />
 
-}
-export default connect(state=> state, mapDispatchToProps)(FormikNewPlantForm)
+      <label htmlFor="height"></label>
+      <input
+        type="text"
+        name="plantType"
+        id="plantType"
+        value={plant.plantType}
+        onChange={handleChange}
+        placeholder="Plant Type"
+      />
+
+      <button  type="submit" >Add Plant</button>
+    </form>
+    </div>
+  );
+};
+
+// const formikNewPlant = withFormik({
+//   mapPropsToValues({ nickname, photo, plantType }) {
+//     return {
+//       nickname: nickname || "",
+//       photo: photo || "",
+//       plantType: plantType || ""
+//     };
+//   },
+//   handleSubmit(values, formikBag) {
+//     console.log(values);
+//     formikBag.props.postPlant(values);
+//   },
+//   validationSchema: Yup.object().shape({
+//     nickname: Yup.string().required("Please provide a nickname for your plant"),
+//     photo: Yup.string().required("Please provide a photo for your plant"),
+//     plantType: Yup.string().required("please include a plant type")
+//   })
+// })(NewPlant);
+const mapDispatchToProps = {
+  postPlant
+};
+export default connect(state => state, mapDispatchToProps)(NewPlant);
+// export default formikNewPlant;

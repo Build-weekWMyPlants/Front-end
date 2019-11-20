@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import axios from "axios";
+import NavSignLog from "./NavSignLog"
 import { connect } from "react-redux";
-import { login } from '../actions/Loginactions';
+import { login } from "../actions/LoginActions";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -173,6 +174,6 @@ const FormikLogin = withFormik({
 // export default (FormikLogin)
 
 const mapDispatchToProps = {
-    login
+  login
 };
 export default connect(state => state, mapDispatchToProps)(FormikLogin);
