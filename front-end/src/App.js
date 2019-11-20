@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
 
-      <PrivateRoute path="/plantpractice">
+      <PrivateRoute>
       <Route
           path="/add-plant"
           render={props => <FormikNewPlantForm {...props} />}

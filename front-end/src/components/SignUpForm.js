@@ -107,9 +107,9 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
                             {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
                         </FormDiv>
                         <FormDiv>
-                            <StyledEntry>Number</StyledEntry>
-                            <Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx' />
-                            {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
+                            <StyledEntry>Email</StyledEntry>
+                            <Field className='input-box' type='email' name='email' placeholder='Example@gmail.com' />
+                            {touched.email && errors.email && (<p className='error'>{errors.email}</p>)}
                         </FormDiv>
                             <StyledEntry>Password</StyledEntry>
                             <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
@@ -129,10 +129,10 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
 }
 
 const FormikNewUser = withFormik({
-    mapPropsToValues({ name, number, password, /*confirm*/ }) {
+    mapPropsToValues({ name, email, password, /*confirm*/ }) {
         return {
             name: name || '',
-            number: number || '',
+            email: email || '',
             password: password || '',
             // confirm: confirm || ''
         };
@@ -140,7 +140,7 @@ const FormikNewUser = withFormik({
 
     validationSchema: Yup.object().shape({
         name: Yup.string().min(3, 'Name must have more than 3 characters.').required('Required field.'),
-        number: Yup.string().min(10, 'Number must be 10 characters.').required('Required field.'),
+        email: Yup.string().email("Email not valid.").required("Required field."),
         password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.'),
         // confirm: Yup.string()
     }),
