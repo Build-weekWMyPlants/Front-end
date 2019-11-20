@@ -20,137 +20,134 @@ const StyledForm = styled.div`
 `;
 const StyledEntry = styled.label`
   color: black;
+  font-weight: bold;
 `;
 const StyledResults = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
+const FormDiv = styled.div`
+    margin: 10px 0;
+`;
+const NavStyle = styled.nav`
+  display: flex;
+  align-items: center;
+  background-color: #235b2d;
+`;
+const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0 auto;
+    margin-bottom: 20px;
+`;
+const H1Style = styled.h1`
+  width: 50%;
+  display: flex;
+  padding-left: 10px;
+  color: white;
+`;
+const H2Styled = styled.h2`
+    margin-top: 20px;
+`;
+const H3Styled = styled.h3`
+    font-size: 25px;
+    margin-top: 20px;
+`;
 const StyledButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;
   color: white;
-  width: 80%;
+  width: 30%;
   margin: 30 0;
   border-radius: 20px;
 `;
 
-const NewUser = ({ history,signUp, values, errors, touched, status }) => {
-  const [user, setUser] = useState([]);
- const [userInfo, setUserInfo] = useState({
-     username: "",
-     primaryemail: "",
-     password: ""
- })
- const handleChange = e => {
-     setUserInfo({
-         ...userInfo,
-         [e.target.name]:e.target.value
-     })
- }
- const handleSubmit = e => {
-     e.preventDefault();
-     signUp(userInfo);
-     history.push('/login')
-
- }
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
+const NewUser = ({ history, signUp, values, errors, touched, status }) => {
+    const [user, setUser] = useState([]);
+    const [userInfo, setUserInfo] = useState({
+        username: "",
+        primaryemail: "",
+        password: ""
+    })
+    const handleChange = e => {
+        setUserInfo({
+            ...userInfo,
+            [e.target.name]: e.target.value
+        })
     }
-  }, [status]);
+    const handleSubmit = e => {
+        e.preventDefault();
+        signUp(userInfo);
+        history.push('/login')
 
-  return (
-    <MainCont>
-      <NavSignLog />
-      <div>
-        <h2>Let's get started</h2>
-        <h3>Create your account</h3>
-      </div>
-      <Form onSubmit={handleSubmit}>
-        <StyledForm>
-          <div>
-            <StyledEntry>
-              Enter Username
-              <Field
-                className="input-box"
-                type="text"
-                name="username"
-                placeholder="username"
-                value={userInfo.username}
-                onChange={handleChange}
-              />
-              {touched.name && errors.name && (
-                <p className="error">{errors.name}</p>
-              )}
-            </StyledEntry>
-          </div>
-          <div>
-            <StyledEntry>
-              Enter Email
-              <Field
-                className="input-box"
-                type="email"
-                name="primaryemail"
-                placeholder="john@doe.com"
-                value={userInfo.primaryemail}
-                onChange={handleChange}
-              />
-              {touched.number && errors.number && (
-                <p className="error">{errors.number}</p>
-              )}
-            </StyledEntry>
-          </div>
-          <div>
-            <StyledEntry>
-              Enter Password
-              <Field
-                className="input-box"
-                type="password"
-                name="password"
-                placeholder="●●●●●●●●"
-                value={userInfo.password}
-                onChange={handleChange}
-              />
-              {touched.password && errors.password && (
-                <p className="error">{errors.password}</p>
-              )}
-            </StyledEntry>
-          </div>
-          <StyledButton type="submit">Next</StyledButton>
-          <Link to="/login">Already Have An Account?</Link>
-        </StyledForm>
-      </Form>
-    </MainCont>
-  );
-};
+    }
+    useEffect(() => {
+        if (status) {
+            setUser([...user, status]);
+        }
+    }, [status]);
+
+    return (
+        <MainCont>
+            <NavStyle>
+                <H1Style>Plant Parenthood</H1Style>
+            </NavStyle>
+            <div>
+                <H2Styled>Let's get started!</H2Styled>
+                <H3Styled>Create your account</H3Styled>
+            </div>
+            <Form>
+                <StyledForm>
+                    <StyledDiv>
+                        <FormDiv>
+                            <StyledEntry>Username</StyledEntry>
+                            <Field className='input-box' type='text' name='name' placeholder='username' />
+                            {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
+                        </FormDiv>
+                        <FormDiv>
+                            <StyledEntry>Number</StyledEntry>
+                            <Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx' />
+                            {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
+                        </FormDiv>
+                            <StyledEntry>Password</StyledEntry>
+                            <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                            {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
+                        <FormDiv>    
+                            <StyledEntry>Confirm Password</StyledEntry>
+                            <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                            {/* {touched.confirm && errors.confirm && (<p className='error'>{errors.confirm}</p>)} */}
+                        </FormDiv>    
+                    </StyledDiv>
+                    <StyledButton>Next</StyledButton>
+                    <Link to='/login' className='accountLink'>Already Have An Account?</Link>
+                </StyledForm>
+            </Form>
+        </MainCont>
+    )
+}
 
 const FormikNewUser = withFormik({
-  mapPropsToValues({ username, primaryemail, password, terms }) {
-    return {
-      username: username || "",
-      primaryemail: primaryemail || "",
-      password: password || ""
-    };
-  },
-  // handleSubmit(values, formikBag){formikBag.props.signUp(values)},
+    mapPropsToValues({ name, number, password, /*confirm*/ }) {
+        return {
+            name: name || '',
+            number: number || '',
+            password: password || '',
+            // confirm: confirm || ''
+        };
+    },
 
-  validationSchema: Yup.object().shape({
-    username: Yup.string()
-      .min(3, "Name must have more than three character.")
-      .required("Required field."),
-    primaryemail: Yup.string()
-      .required("Required field."),
-    primarypassword: Yup.string()
-      .min(6, "Password must have at least 6 characters.")
-      .required("Required field.")
-  })
-  
+    validationSchema: Yup.object().shape({
+        name: Yup.string().min(3, 'Name must have more than 3 characters.').required('Required field.'),
+        number: Yup.string().min(10, 'Number must be 10 characters.').required('Required field.'),
+        password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.'),
+        // confirm: Yup.string()
+    }),
 })(NewUser);
 
 const mapDispatchToProps = {
-  signUp
+    signUp
 };
 
 export default connect(state => state, mapDispatchToProps)(FormikNewUser);

@@ -40,6 +40,7 @@ const newUserState = () => ({
   primaryemail: ""
 });
 
+
 export const signUpreducer = (state = newUserState, action) => {
   switch (action.type) {
     case CREATE_USER_START:
@@ -115,4 +116,5 @@ export const addPlantReducer = (state = newPlantState, action) => {
       return state
   }
 };
+
 
