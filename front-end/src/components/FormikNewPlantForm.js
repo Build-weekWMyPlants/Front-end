@@ -1,26 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { withFormik, Form, Field } from "formik";
+import { withFormik, Form, Field, connect } from "formik";
 import * as Yup from "yup";
-import { FaUserCircle } from "react-icons/fa";
+import Nav from "./Nav";
 import Placeholder from "../images/plant.png"
+import { postPlant } from "../actions/postPlantActions"
 import { Link } from "react-router-dom";
 import "../../src/App.css"
-
-const NavStyle = styled.nav`
-    display: flex;
-    align-items: center;
-    background-color: #235B2D;
-    height: 7vh;
-`;
-
-const H1Style = styled.h1`
-    width: 50%;
-    display: flex;
-    padding-left: 10px;
-    color: white;
-
-`;
 
 const LogInDivStyled = styled.div`
     width: 50%;
@@ -48,16 +34,10 @@ const ImageDiv = styled.div`
     padding-bottom: 10px;
 `;
 
-const NewPlant = ({ values, errors, touched }) => {
+const NewPlant = ({ postPlant,values, errors, touched }) => {
     return (
         <div>
-            <NavStyle>
-                <H1Style>Plant Parenthood</H1Style>
-                <Link className="icon-style" to="/userprofile">
-                    <FaUserCircle />
-                </Link>
-            </NavStyle>
-
+            <Nav />
             <MainContain>
                 <h1>Add a New Plant!</h1>
                 <LogInDivStyled>
@@ -111,6 +91,7 @@ const FormikNewPlantForm = withFormik({
             location: location || ""
         };
     },
+    handleSubmit(values, formikBag){formikBag.props.addPlant(values)},
     validationSchema: Yup.object().shape({
         name: Yup.string().required("Please provide your plant with a nickname!"),
         species: Yup.string().required("Type of Plant is required!"),
@@ -121,4 +102,8 @@ const FormikNewPlantForm = withFormik({
 
 })(NewPlant)
 
-export default FormikNewPlantForm;
+// export default FormikNewPlantForm;
+const mapDispatchToProps ={
+
+}
+export default connect(state=> state, mapDispatchToProps)(FormikNewPlantForm)

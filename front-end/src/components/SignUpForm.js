@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "./SignUpForm.css";
+import NavSignLog from "./NavSignLog";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signUp } from "../actions/createUserActions";

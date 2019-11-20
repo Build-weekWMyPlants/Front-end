@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../utils/PrivateRoute";
+import axios from "axios"
 
 export const CREATE_USER_START = "CREATE_USER_START";
 export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
@@ -24,15 +24,16 @@ export const createUserFail = error => ({
 });
 
 export const signUp = user => {
-  const authAxios = axiosWithAuth();
+  
   return dispatch => {
     dispatch(createUserStart());
 
-    authAxios
-      .post("/createnewuser", user)
+    axios
+      .post("https://vdtyson-watermyplants.herokuapp.com/createnewuser", user)
       .then(response => {
         console.log("SIUGNUP SUCCESS", response);
         dispatch(createUserSuccess(response.data));
+        localStorage.setItem("token",response.data.access_token)
         console.log(response);
       })
       .catch(error => {

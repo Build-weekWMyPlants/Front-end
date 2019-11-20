@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 import axios from 'axios';
-import { FaUserCircle } from 'react-icons/fa';
+import Nav from "./Nav";
 import plant from '../images/placeholder-plant.jpg';
 import './UserProfile.css';
 
@@ -84,10 +85,7 @@ const UserProfile = () => {
 
     return (
         <div>
-            <NavStyle>
-                <H1Style>Plant Parenthood</H1Style>
-                <H4Style><FaUserCircle /></H4Style>
-            </NavStyle>
+            <Nav/>
             <MainContain>
                 <StyledDiv>
                 <ImgPlaceholder className='plantImage' src={plant} />

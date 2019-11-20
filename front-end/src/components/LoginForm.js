@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import { connect } from "react-redux";
-//import { login } from "../actions/LoginActions";
+// import { login } from "../actions/LoginActions";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -72,11 +72,11 @@ const NewUser = ({ values, errors, touched, status, login}) => {
   //   });
     
   // };
-// const logOut = e => {
-//   e.preventDefault();
-//   localStorage.clear("token");
-//   setLoggedIn(false);
-// }
+const logOut = e => {
+  e.preventDefault();
+  localStorage.clear("token");
+  setLoggedIn(false);
+}
   // const handleSubmit = e => {
   //   e.preventDefault();
   //   login(data);
@@ -85,8 +85,8 @@ const NewUser = ({ values, errors, touched, status, login}) => {
   //   // history.push("/plantpractice")
   // };
 
-  //
-  // const login = () => {
+  
+  // const axiosLogin = () => {
 
   //     axios
   //     .post("https://vdtyson-watermyplants.herokuapp.com/login", data)
@@ -99,7 +99,7 @@ const NewUser = ({ values, errors, touched, status, login}) => {
   //         console.log("LOGIN ERROR", error, data)
   //     })
   // }
-  //
+  
 
   useEffect(() => {
     if (status) {
@@ -109,9 +109,7 @@ const NewUser = ({ values, errors, touched, status, login}) => {
 
   return (
     <MainCont>
-      <NavStyle>
-        <H1Style>Plant Parenthood</H1Style>
-      </NavStyle>
+      <NavSignLog />
       <div>
         <h2>{loggedIn ? "Logged in" : "Please login"}</h2>
       </div>
@@ -150,8 +148,8 @@ const NewUser = ({ values, errors, touched, status, login}) => {
           </FormDiv>
           </StyledDiv>
           <StyledButton type="submit">Log in</StyledButton>
-          {/* <StyledButton onClick={logOut}>Log out</StyledButton> */}
-          <Link to="/sign-up" className='signUpLink'>Don't Have An Account?</Link>
+          <StyledButton onClick={logOut}>Log out</StyledButton>
+          <Link to="/sign-up">Don't Have An Account?</Link>
         </StyledForm>
       </Form>
     </MainCont>
@@ -175,6 +173,6 @@ const FormikLogin = withFormik({
 // export default (FormikLogin)
 
 const mapDispatchToProps = {
-//   login
+  // login
 };
 export default connect(state => state, mapDispatchToProps)(FormikLogin);
