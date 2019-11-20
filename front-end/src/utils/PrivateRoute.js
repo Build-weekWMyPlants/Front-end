@@ -1,11 +1,12 @@
 import React from "react";
+import axios from "axios"
 import { Route, Redirect } from "react-router-dom"
 
 const isAuthenticated = () => {
     return localStorage.getItem('token') ? true : false 
 }
 
-export default function PrivateRoute({children, ...rest}) {
+export  const PrivateRoute=({children, ...rest})=> {
     return (
         <Route
           {...rest}
@@ -27,7 +28,7 @@ export default function PrivateRoute({children, ...rest}) {
 
 export const axiosWithAuth = () => {
     return axios.create({
-      baseURL: 'vdtyson-watermyplants.herohuapp.com',
+      baseURL: 'https://vdtyson-watermyplants.herokuapp.com/',
       headers: {
         authorization: localStorage.getItem("token")
       }

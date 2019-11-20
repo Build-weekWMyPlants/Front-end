@@ -1,70 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import { withFormik, Form, Field } from 'formik';
-import * as Yup from 'yup';
+import React, { useState, useEffect } from "react";
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
 import styled from "styled-components";
-import './SignUpForm.css';
-import { Link } from 'react-router-dom';
+import "./SignUpForm.css";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { signUp } from "../actions/createUserActions";
 
 const MainCont = styled.div`
-    font-family: 'Nunito', sans-serif;
-    font-weight: bold;
-    width: 50%;
-    margin: 0 auto;
+  width: 50%;
+  margin: 0 auto;
 `;
 const StyledForm = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px auto;
 `;
 const StyledEntry = styled.label`
-    color: black;
-    width: 
+  color: black;
+  font-weight: bold;
 `;
 const StyledResults = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const FormDiv = styled.div`
+    margin: 10px 0;
 `;
 const NavStyle = styled.nav`
+  display: flex;
+  align-items: center;
+  background-color: #235b2d;
+`;
+const StyledDiv = styled.div`
     display: flex;
-    align-items: center;
-    background-color: #235B2D;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0 auto;
+    margin-bottom: 20px;
 `;
 const H1Style = styled.h1`
-    width: 50%;
-    display: flex;
-    padding-left: 10px;
-    color: white;
+  width: 50%;
+  display: flex;
+  padding-left: 10px;
+  color: white;
 `;
 const H2Styled = styled.h2`
-margin: 15px 0;
+    margin-top: 20px;
 `;
 const H3Styled = styled.h3`
-
+    font-size: 25px;
+    margin-top: 20px;
 `;
 const H4Style = styled.h4`
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-    color: white;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  color: white;
 `;
 const StyledButton = styled.button`
-    background-color: #235B2D;
-    border: 1px solid #235B2D;
-    color: white;
-    width: 40%;
-    margin: 30 0;
-    border-radius: 5px;
+  background-color: #235b2d;
+  border: 1px solid #235b2d;
+  color: white;
+  width: 30%;
+  margin: 30 0;
+  border-radius: 20px;
 `;
 
-const NewUser = ({ values, errors, touched, status }) => {
+const NewUser = ({ history, signUp, values, errors, touched, status }) => {
     const [user, setUser] = useState([]);
+    const [userInfo, setUserInfo] = useState({
+        username: "",
+        primaryemail: "",
+        password: ""
+    })
+    const handleChange = e => {
+        setUserInfo({
+            ...userInfo,
+            [e.target.name]: e.target.value
+        })
+    }
+    const handleSubmit = e => {
+        e.preventDefault();
+        signUp(userInfo);
+        history.push('/login')
 
+    }
     useEffect(() => {
         if (status) {
-            setUser([...user, status])
+            setUser([...user, status]);
         }
     }, [status]);
 
@@ -79,28 +106,28 @@ const NewUser = ({ values, errors, touched, status }) => {
             </div>
             <Form>
                 <StyledForm>
-                    <div>
-                        <StyledEntry>Username<Field className='input-box' type='text' name='name' placeholder='username' />
+                    <StyledDiv>
+                        <FormDiv>
+                            <StyledEntry>Username</StyledEntry>
+                            <Field className='input-box' type='text' name='name' placeholder='username' />
                             {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
-                        </StyledEntry>
-                    </div>
-                    <div>
-                        <StyledEntry>Number<Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx' />
+                        </FormDiv>
+                        <FormDiv>
+                            <StyledEntry>Number</StyledEntry>
+                            <Field className='input-box' type='number' name='number' placeholder='(xxx)-xxx-xxxx' />
                             {touched.number && errors.number && (<p className='error'>{errors.number}</p>)}
-                        </StyledEntry>
-                    </div>
-                    <div>
-                        <StyledEntry>Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                        </FormDiv>
+                            <StyledEntry>Password</StyledEntry>
+                            <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
                             {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
-                        </StyledEntry>
-                    </div>
-                    <div>
-                        <StyledEntry>Confirm Password<Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                        <FormDiv>    
+                            <StyledEntry>Confirm Password</StyledEntry>
+                            <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
                             {/* {touched.confirm && errors.confirm && (<p className='error'>{errors.confirm}</p>)} */}
-                        </StyledEntry>
-                    </div>
+                        </FormDiv>    
+                    </StyledDiv>
                     <StyledButton>Next</StyledButton>
-                    <Link>Already Have An Account?</Link>
+                    <Link className='AccountLink'>Already Have An Account?</Link>
                 </StyledForm>
             </Form>
         </MainCont>
@@ -108,7 +135,7 @@ const NewUser = ({ values, errors, touched, status }) => {
 }
 
 const FormikNewUser = withFormik({
-mapPropsToValues({ name, number, password, /*confirm*/ }) {
+    mapPropsToValues({ name, number, password, /*confirm*/ }) {
         return {
             name: name || '',
             number: number || '',
@@ -125,6 +152,8 @@ mapPropsToValues({ name, number, password, /*confirm*/ }) {
     }),
 })(NewUser);
 
-export default FormikNewUser;
+const mapDispatchToProps = {
+    signUp
+};
 
-
+export default connect(state => state, mapDispatchToProps)(FormikNewUser);

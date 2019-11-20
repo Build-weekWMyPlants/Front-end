@@ -18,16 +18,16 @@ export const updatePlantSuccess = plant =>({
     }
 })
 
-export const updatPlantFail = error => ({
+export const updatePlantFail = error => ({
     type: UPDATE_PLANT_FAIL,
     payload: error
 })
 
-export const updatePlant = () => {
-    authAxios = axiosWithAuth()
+export const updatePlant = (plant, plantToEdit) => {
+    // authAxios = axiosWithAuth();
     return dispatch => {
         dispatch(updatePlantStart());
-        authAxios
+        axiosWithAuth
         .put(`/api/plants/${plant.id}`, plantToEdit )
         .then(response => {
             dispatch(updatePlantSuccess(response.data))

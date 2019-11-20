@@ -23,22 +23,21 @@ export const createUserFail = error => ({
   }
 });
 
-export const signUp = (username, password, primaryemail) => {
+export const signUp = user => {
   const authAxios = axiosWithAuth();
   return dispatch => {
     dispatch(createUserStart());
 
-    authAxios.post("/createnewuser", {
-      username,
-      password,
-      primaryemail
-    })
-    .then(response => {
-        console.log("SIUGNUP SUCCESS", response)
-        dispatch(createUserSuccess(response.data))
-    })
-    .catch(error => {
-        dispatch(createUserFail(error.response))
-    })
+    authAxios
+      .post("/createnewuser", user)
+      .then(response => {
+        console.log("SIUGNUP SUCCESS", response);
+        dispatch(createUserSuccess(response.data));
+        console.log(response);
+      })
+      .catch(error => {
+        dispatch(createUserFail(error.response));
+        console.log("SIGNUP ERROR", error);
+      });
   };
 };
