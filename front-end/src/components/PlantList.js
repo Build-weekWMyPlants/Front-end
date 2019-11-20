@@ -19,6 +19,9 @@ const PlantListDiv = styled.div`
     height: 250px;
     width: 250px;
     display: flex;
+    align-items: center;
+    jusity-content: center;
+    flex-direction: column;
     padding-left: 5px;
     align-items: center;
     margin-top: 35px;
@@ -36,10 +39,10 @@ const PlantList = props => {
     const [plantList, setPlantList] = useState([])
 
     useEffect(() => {
-        axios.get('https://vdtyson-watermyplants.herokuapp.com/plants/user/4')
+        axios.get('https://vdtyson-watermyplants.herokuapp.com/plants/user/7')
             .then(response => {
                 console.log(response)
-                setPlantList()
+                setPlantList(response.data)
             })
             .catch(error => {
                 console.log("Something went wrong!", error)
@@ -56,24 +59,12 @@ const PlantList = props => {
                 </Link>
                 </TopDivStyle>
             <MainContain>
-                <PlantListDiv>
-                    <h3>Nickname: </h3>
-                </PlantListDiv>
-                <PlantListDiv>
-                    <h3>Nickname: </h3>
-                </PlantListDiv>
-                <PlantListDiv>
-                    <h3>Nickname: </h3>
-                </PlantListDiv>
-                <PlantListDiv>
-                    <h3>Nickname: </h3>
-                </PlantListDiv>
-                <PlantListDiv>
-                    <h3>Nickname: </h3>
-                </PlantListDiv>
-                <PlantListDiv>
-                    <h3>Nickname: </h3>
-                </PlantListDiv>
+                {plantList.map(plant => (
+                    <PlantListDiv>
+                        <h3>Nickname: {plant.nickname}</h3>
+                        <h4>Plant Type: {plant.plantType}</h4>
+                    </PlantListDiv>
+                ))}
             </MainContain>
         </div>
 

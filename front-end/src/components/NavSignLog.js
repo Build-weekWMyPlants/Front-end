@@ -26,7 +26,6 @@ const NavSignLog = () => {
     return (
       <NavStyle>
         <H1Style>Plant Parenthood</H1Style>
-        <H4Style>Icon</H4Style>
       </NavStyle>
     )
 }
