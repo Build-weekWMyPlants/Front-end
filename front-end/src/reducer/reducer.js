@@ -1,13 +1,13 @@
-import {
-  LOGIN_START,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL
-} from "../actions/LoginActions";
-import {
-  CREATE_USER_START,
-  CREATE_USER_SUCCESS,
-  CREATE_USER_FAIL
-} from "../actions/createUserActions";
+// import {
+//   LOGIN_START,
+//   LOGIN_SUCCESS,
+//   LOGIN_FAIL
+// } from "../actions/LoginActions";
+// import {
+//   CREATE_USER_START,
+//   CREATE_USER_SUCCESS,
+//   CREATE_USER_FAIL
+// } from "../actions/createUserActions";
 
 import {
   POST_PLANT_START,
@@ -34,12 +34,63 @@ import {
 
 
 
-const newUserState = () => ({
-  username: "",
-  password: "",
-  primaryemail: ""
-});
+// const newUserState = () => ({
+//   username: "",
+//   password: "",
+//   primaryemail: ""
+// });
 
+<<<<<<< HEAD
+
+// export const signUpreducer = (state = newUserState, action) => {
+//   switch (action.type) {
+//     case CREATE_USER_START:
+//       return {
+//         ...state,
+//         username: action.payload,
+//         password: action.payload,
+//         primaryemail: action.payload
+//       };
+//     case CREATE_USER_SUCCESS:
+//       return {
+//         ...state
+//       };
+//     case CREATE_USER_FAIL:
+//       return {
+//         ...state,
+//         error: action.payload.error
+//       };
+//     default:
+//       return state;
+//   }
+// };
+// const userState = () => ({
+//   username: "",
+//   password: ""
+// });
+// export const loginReducer = (state = userState, action) => {
+//   switch (action.type) {
+//     case LOGIN_START:
+//       return {
+//         ...state,
+//         username: action.payload,
+//         password: action.payload
+//       };
+//     case LOGIN_SUCCESS:
+//       return {
+//         ...state,
+        
+//       };
+//     case LOGIN_FAIL:
+//       return {
+//         ...state,
+//         error: action.payload
+//       };
+//       default: 
+//       return state;
+//   }
+// };
+=======
 export const signUpreducer = (state = newUserState, action) => {
   switch (action.type) {
     case CREATE_USER_START:
@@ -116,3 +167,4 @@ export const addPlantReducer = (state = newPlantState, action) => {
   }
 };
 
+>>>>>>> 61a4697ef08b9d2216297c890869df111925379f
