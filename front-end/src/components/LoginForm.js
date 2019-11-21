@@ -56,17 +56,14 @@ const StyledButton = styled.button`
   margin: 10px auto;
   border-radius: 20px;
 `;
-const NewUser = ({ values, errors, touched, status, login }) => {
+const NewUser = ({ values, errors, touched, status, history, login }) => {
   const [user, setUser] = useState([]);
   const [data, setData] = useState({
     username: "",
     password: ""
   });
-  const username = localStorage.getItem("username")
+  const username = localStorage.getItem("username");
   const [loggedIn, setLoggedIn] = useState(false);
-
-
- 
 
   const logOut = e => {
     e.preventDefault();
@@ -74,11 +71,11 @@ const NewUser = ({ values, errors, touched, status, login }) => {
     setLoggedIn(false);
   };
 
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
-    }
-  }, [status]);
+  // useEffect(() => {
+  //   if (status) {
+  //     setUser([...user, status]);
+  //   }
+  // }, [status]);
 
   return (
     <MainCont>
@@ -116,9 +113,20 @@ const NewUser = ({ values, errors, touched, status, login }) => {
               )}
             </FormDiv>
           </StyledDiv>
-          <StyledButton type="submit"onClick={e => setLoggedIn(true)}>Log in</StyledButton>
+          <StyledButton
+            type="submit"
+            onClick={e => {
+              e.preventDefault();
+              setLoggedIn(true);
+              history.push("/plantpractice")
+            }}
+          >
+            Log in
+          </StyledButton>
           <StyledButton onClick={logOut}>Log out</StyledButton>
-          <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
+          <Link className="signUpLink" to="/sign-up">
+            Don't Have An Account?
+          </Link>
         </StyledForm>
       </Form>
     </MainCont>
