@@ -4,43 +4,66 @@ import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios"
 
-const MainContain = styled.div`
-    height: 93vh;
-    width: 900px;
-    margin: 0 auto;
+const PlantListDiv = styled.div`
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    border: 2px solid red;
+    flex-direction: column;
+    // padding-left: 5px;
+    align-content: center;
+    margin-top: 35px;
 `;
 
-const ImageDiv = styled.div`
-    width: 80%;
-    padding-bottom: 20px;
-    margin: 0 auto;
+const ButtonContain = styled.div`
+    display: flex;
+    width: 40%;
+    justify-content: space-evenly;
+    margin-top: 5%;
 `;
-const Plant = () => {
-    const [plant, setPlant] = useState()
+
+const WateredButton = styled.button`
+    background-color: steelblue;
+    color: white;
+    margin-bottom: 10%;
+    border-radius: 5px;
+    font-weight: bold;
+`;
+
+const EditButton = styled.button`
+    background-color: #235B2D;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+
+`;
+
+const DeleteButton = styled.button`
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+
+`;
 
 
+const Plant = props => {
+ 
     return (
         <div>
-            <Nav />
-            <MainContain>
-                <h2>Nickname: Planty Planterson</h2>
-                {/* <ImageDiv>
-                    <img src="https://www.fillmurray.com/200/300" alt="placeholder murray" />
-                </ImageDiv> */}
-                <h3>Species: Succulent</h3>
-                <h3>Location: Kitchen Window</h3>
-                <h3>Last Time Watered: </h3>
-                <div>
-                    <button className="watered-button">Watered</button>
-                    <button className="button-style-plant">Edit</button>
-                    <button className="delete-button">Delete</button>
-                </div>
-            </MainContain>
-        </div>
+                <PlantListDiv>
+                <WateredButton>Mark as Watered</WateredButton>
+                    <h4>{props.name}</h4>
+                    <h4>{props.species}</h4>
+                    
+                    <ButtonContain>
+                    <EditButton>Edit</EditButton>
+                    <DeleteButton>Delete</DeleteButton>
+                    </ButtonContain>
+                </PlantListDiv> 
+                </div>          
     );
 }
 

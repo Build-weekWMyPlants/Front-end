@@ -8,7 +8,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
 
-
 const MainCont = styled.div`
   width: 50%;
   margin: 0 auto;
