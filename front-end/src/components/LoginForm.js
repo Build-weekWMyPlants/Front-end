@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
+import NavSignLog from './NavSignLog';
 
 const MainCont = styled.div`
   width: 50%;
@@ -53,8 +54,8 @@ const StyledButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;
   color: white;
-  width: 30%;
-  margin: 30 0;
+  width: 25%;
+  margin: 10px auto;
   border-radius: 20px;
 `;
 const NewUser = ({ values, errors, touched, status, login}) => {
@@ -69,7 +70,6 @@ const NewUser = ({ values, errors, touched, status, login}) => {
   //   setData({
   //     ...data,
   //     [e.target.name]: e.target.value
-      
   //   });
     
   // };
@@ -86,7 +86,7 @@ const logOut = e => {
   //   // history.push("/plantpractice")
   // };
 
-  
+
   // const axiosLogin = () => {
 
   //     axios
@@ -150,7 +150,7 @@ const logOut = e => {
           </StyledDiv>
           <StyledButton type="submit">Log in</StyledButton>
           <StyledButton onClick={logOut}>Log out</StyledButton>
-          <Link to="/sign-up">Don't Have An Account?</Link>
+          <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
         </StyledForm>
       </Form>
     </MainCont>

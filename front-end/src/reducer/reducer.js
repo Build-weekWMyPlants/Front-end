@@ -29,14 +29,11 @@ import {
 //   GET_PLANTS_FAIL
 // } from "../actions/getPlantsActions";
 
-
-
 const newUserState = () => ({
   username: "",
   password: "",
   primaryemail: ""
 });
-
 
 export const signUpreducer = (state = newUserState, action) => {
   switch (action.type) {
@@ -111,5 +108,6 @@ export const addPlantReducer = (state = newPlantState, action) => {
       default:
       return state
   }
+
 };
 
