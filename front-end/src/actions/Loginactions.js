@@ -47,19 +47,3 @@ export const login = (user) => {
       });
   };
 };
-// export const login = data => {
-//   return dispatch => {
-//     axiosWithAuth()
-//       .post("/login", data)
-//       .then(response => {
-//         dispatch(loginSuccess(response.data));
-//         console.log("LOGIN SUCCESS", response.data);
-//         localStorage.setItem("token", response.data.access_token);
-//         localStorage.setItem("token_type", response.data.token_type);
-//       })
-//       .catch(error => {
-//         dispatch(loginFail(error.response));
-//         console.log("LOGIN ERROR", error, data);
-//       });
-//   };
-// };

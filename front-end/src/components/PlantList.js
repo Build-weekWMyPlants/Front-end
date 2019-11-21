@@ -39,7 +39,6 @@ const TopDivStyle = styled.div`
 
 const PlantList = props => {
   const [plantList, setPlantList] = useState([]);
-  // const [userID, setUserID]= useState("")
   const username = localStorage.getItem("username");
 
   useEffect(() => {
