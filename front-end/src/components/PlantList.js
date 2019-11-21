@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import Nav from "./Nav";
+// import FormikNewPlantForm from "./FormikNewPlantForm";
+
 import styled from "styled-components";
 import axios from "axios";
 
 const MainContain = styled.div`
-    height: 93vh;
-    width: 900px;
-    margin: 0 auto;
-    display: flex;
-    // flex-direction: column;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+  height: 93vh;
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 `;
 
 const PlantListDiv = styled.div`
@@ -28,11 +30,11 @@ const PlantListDiv = styled.div`
 `;
 
 const TopDivStyle = styled.div`
-    display: flex;
-    height: 40px;
-    width: 900px;
-    margin: 0 auto;
-    margin-top: 10px;
+  display: flex;
+  height: 40px;
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 10px;
 `;
 
 const PlantList = props => {
@@ -68,8 +70,7 @@ const PlantList = props => {
             </MainContain>
         </div>
 
-    )
-
-}
+  );
+};
 
 export default PlantList;

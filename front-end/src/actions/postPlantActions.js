@@ -21,21 +21,20 @@ export const postPlantFail = error => ({
     payload: error
 })
 
-export const postPlant = (nickname, species, h20frequency) => {
-    const authAxios = axiosWithAuth()
-    return dipatch => {
-        dispatchEvent(postPlantStart());
-        authAxios
-        .post("/api/plants", {
-            nickname,
-            species, 
-            h20frequency
-        })
+export const postPlant = (plant) => dispatch =>{
+    console.log("POST PLANT", plant)
+    const authAxios = axiosWithAuth
+    
+        dispatch(postPlantStart());
+        authAxios()
+        .post("/plants/7", plant)
         .then(response => {
-            dispatchEvent(postPlantSuccess(response.data))
+            dispatch(postPlantSuccess(response.data));
+            console.log("POST PLANT SUCCESS", response.data)
         })
         .catch(error => {
-            dipatch(postPlantFail(error.response))
+            dispatch(postPlantFail(error.response));
+            console.log("POST PLANT FAIL", error)
         })
-    }
+    
 }

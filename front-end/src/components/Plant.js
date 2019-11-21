@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import styled from "styled-components";
+import axios from "axios"
 
 const MainContain = styled.div`
     height: 93vh;
@@ -20,6 +21,7 @@ const ImageDiv = styled.div`
 `;
 const Plant = () => {
     const [plant, setPlant] = useState()
+
 
     return (
         <div>
