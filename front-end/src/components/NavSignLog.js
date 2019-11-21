@@ -9,16 +9,10 @@ const NavStyle = styled.nav`
   background-color: #235b2d;
 `;
 const H1Style = styled.h1`
-  width: 50%;
+  width: 100%;
   display: flex;
+  justify-content: center;
   padding-left: 10px;
-  color: white;
-`;
-const H4Style = styled.h4`
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 10px;
   color: white;
 `;
 

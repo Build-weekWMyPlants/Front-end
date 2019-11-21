@@ -4,12 +4,13 @@ import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
 import DefaultPic from "../images/default.jpg"
-import './Plant.css'
+import './Plant.css';
+import dateFormat from "dateformat";
 
 const PlantListDiv = styled.div`
   border: 1px solid black;
-  height: 400px;
-  width: 400px;
+  height: 420px;
+  width: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +68,13 @@ const StyledWatered = styled.button`
 `;
 
 const Plant = props => {
-    
+    const [timeStamp, setTimeStamp] = useState("")
+
+    const waterTimeStamp = () => {
+        setTimeStamp(dateFormat("dddd, mmmm dS, yyyy, h:MM:ss TT"))
+        // dateFormat(timeStamp, "dddd, mmmm ds, yyyy, h:MM:ss TT")
+        console.log(timeStamp)
+    }
     const deletePlant = plant => {
         console.log("ID", props.plant);
         axios
@@ -81,28 +88,14 @@ const Plant = props => {
           .catch(error => console.log("DELETE", error));
       };
 
-    if(props.image === " " || props.image === "") {
-        return <div>
-        <PlantListDiv>
-            <ImageStyle src={DefaultPic} />
-            <H4Style>{props.name}</H4Style>
-            <H4Style>{props.species}</H4Style>
-            <WateredButton>Mark as Watered</WateredButton>
-            <ButtonContain>
-            <EditButton>Edit</EditButton>
-            <DeleteButton onClick={e => {e.preventDefault(); deletePlant(props.plant.id)}}>Delete</DeleteButton>
-            </ButtonContain>
-        </PlantListDiv> 
-        </div>          
-    } else
-
     return (
         <div>
                 <PlantListDiv>
-                    <ImageStyle src={props.image}/>
+                <ImageStyle src={props.image===" "|| props.image === "" ? DefaultPic : props.image} />
                     <H4Style>{props.name}</H4Style>
                     <H4Style>{props.species}</H4Style>
-                    <WateredButton>Mark as Watered</WateredButton>
+                    <WateredButton onClick={waterTimeStamp}>Mark as Watered</WateredButton>
+                    <p>Last Watered: {timeStamp}</p>
                     <ButtonContain>
                     <EditButton>Edit</EditButton>
                     <DeleteButton onClick={e => {e.preventDefault(); deletePlant(props.plant.id)}}>Delete</DeleteButton>
