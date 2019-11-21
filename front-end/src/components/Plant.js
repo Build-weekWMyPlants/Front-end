@@ -4,7 +4,9 @@ import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
 import DefaultPic from "../images/default.jpg"
-import './Plant.css'
+import './Plant.css';
+import { Moment } from 'moment';
+import dateFormat from 'dateformat';
 
 const PlantListDiv = styled.div`
   border: 1px solid black;
@@ -33,7 +35,10 @@ const WateredButton = styled.button`
     margin-bottom: 5%;
     border-radius: 5px;
     font-weight: bold;
+`;
 
+const StyledPara = styled.p`
+  font-size: 14px;
 `;
 
 const EditButton = styled.button`
@@ -60,56 +65,47 @@ const ImageStyle = styled.img`
 const H4Style = styled.h4`
     font-size: 16px;
 `;
-const StyledWatered = styled.button`
-  width:85px;
-  height: 50px;
-  border-radius: 25px;
-`;
 
 const Plant = props => {
-    
-    const deletePlant = plant => {
-        console.log("ID", props.plant);
-        axios
-          .delete(
-            `https://vdtyson-watermyplants.herokuapp.com/plants/${props.plant.id}`,props.plant.id
-          )
-          .then(response => {
-            console.log("DELETE SUCCESS",response);
-            props.setPlants(props.plantList.filter(plant => plant.id !== props.plant.id))
-          })
-          .catch(error => console.log("DELETE", error));
-      };
+  const [timeStamp, setTimeStamp] = useState("")
+  const waterTimeStamp = () => {
+    setTimeStamp(Date)
+    console.log(timeStamp)
+  }
 
-    if(props.image === " " || props.image === "") {
-        return <div>
-        <PlantListDiv>
-            <ImageStyle src={DefaultPic} />
-            <H4Style>{props.name}</H4Style>
-            <H4Style>{props.species}</H4Style>
-            <WateredButton>Mark as Watered</WateredButton>
-            <ButtonContain>
-            <EditButton>Edit</EditButton>
-            <DeleteButton onClick={e => {e.preventDefault(); deletePlant(props.plant.id)}}>Delete</DeleteButton>
-            </ButtonContain>
-        </PlantListDiv> 
-        </div>          
-    } else
+  const deletePlant = plant => {
+    console.log("ID", props.plant);
+    axios
+      .delete(
+        `https://vdtyson-watermyplants.herokuapp.com/plants/${props.plant.id}`, props.plant.id
+      )
+      .then(response => {
+        console.log("DELETE SUCCESS", response);
+        props.setPlants(props.plantList.filter(plant => plant.id !== props.plant.id))
+      })
+      .catch(error => console.log("DELETE", error));
+  };
 
-    return (
-        <div>
-                <PlantListDiv>
-                    <ImageStyle src={props.image}/>
-                    <H4Style>{props.name}</H4Style>
-                    <H4Style>{props.species}</H4Style>
-                    <WateredButton>Mark as Watered</WateredButton>
-                    <ButtonContain>
-                    <EditButton>Edit</EditButton>
-                    <DeleteButton onClick={e => {e.preventDefault(); deletePlant(props.plant.id)}}>Delete</DeleteButton>
-                    </ButtonContain>
-                </PlantListDiv> 
-                </div>          
-    );
+  // const waterStamp = () => {
+  //   var timestamp = new Date();
+  //   return (timestamp.toLocaleString());
+  // }
+
+  return (
+    <div>
+      <PlantListDiv>
+        <ImageStyle src={props.image === " " || props.image === "" ? DefaultPic : props.image} />
+        <H4Style>{props.name}</H4Style>
+        <H4Style>{props.species}</H4Style>
+        <WateredButton onClick={waterTimeStamp}>Last Watered!</WateredButton>
+        <StyledPara>Last Watered: {timeStamp}</StyledPara>
+        <ButtonContain>
+          <EditButton>Edit</EditButton>
+          <DeleteButton onClick={e => { e.preventDefault(); deletePlant(props.plant.id) }}>Delete</DeleteButton>
+        </ButtonContain>
+      </PlantListDiv>
+    </div>
+  );
 }
 
 
@@ -124,3 +120,7 @@ function Toggle(props) {
 
   return <div className={`switch ${toggleState}`} onClick={toggle} />;
 }
+
+// let today = new Date();
+//     let date = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
+//     let dateFormat = `${today.getMonth()+1}-${today.getDate()}-${today.getFullYear()}`
