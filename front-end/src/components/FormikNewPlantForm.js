@@ -34,7 +34,7 @@ const ImageDiv = styled.div`
     padding-bottom: 10px;
 `;
 
-const NewPlant = ({ postPlant,values, errors, touched }) => {
+const NewPlant = ({ postPlant, values, errors, touched }) => {
     return (
         <div>
             <Nav />
@@ -42,7 +42,7 @@ const NewPlant = ({ postPlant,values, errors, touched }) => {
                 <h1>Add a New Plant!</h1>
                 <LogInDivStyled>
                     <ImageDiv>
-                        <img className = "new-plant-image"src={Placeholder} alt="placeholder image of flowers" />
+                        <img className="new-plant-image" src={Placeholder} alt="placeholder image of flowers" />
                     </ImageDiv>
                     <Form className="form-container">
                         <label>Nickname: </label>
@@ -91,7 +91,7 @@ const FormikNewPlantForm = withFormik({
             location: location || ""
         };
     },
-    handleSubmit(values, formikBag){formikBag.props.addPlant(values)},
+    handleSubmit(values, formikBag) { formikBag.props.addPlant(values) },
     validationSchema: Yup.object().shape({
         name: Yup.string().required("Please provide your plant with a nickname!"),
         species: Yup.string().required("Type of Plant is required!"),
@@ -103,7 +103,7 @@ const FormikNewPlantForm = withFormik({
 })(NewPlant)
 
 // export default FormikNewPlantForm;
-const mapDispatchToProps ={
+const mapDispatchToProps = {
 
 }
-export default connect(state=> state, mapDispatchToProps)(FormikNewPlantForm)
+export default connect(state => state, mapDispatchToProps)(FormikNewPlantForm)

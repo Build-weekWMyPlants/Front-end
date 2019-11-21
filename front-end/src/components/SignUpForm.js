@@ -111,14 +111,14 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
                             <Field className='input-box' type='email' name='email' placeholder='Example@gmail.com' />
                             {touched.email && errors.email && (<p className='error'>{errors.email}</p>)}
                         </FormDiv>
-                            <StyledEntry>Password</StyledEntry>
-                            <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
-                            {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
-                        <FormDiv>    
+                        <StyledEntry>Password</StyledEntry>
+                        <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
+                        {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
+                        <FormDiv>
                             <StyledEntry>Confirm Password</StyledEntry>
                             <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
                             {/* {touched.confirm && errors.confirm && (<p className='error'>{errors.confirm}</p>)} */}
-                        </FormDiv>    
+                        </FormDiv>
                     </StyledDiv>
                     <StyledButton>Next</StyledButton>
                     <Link to='/login' className='accountLink'>Already Have An Account?</Link>

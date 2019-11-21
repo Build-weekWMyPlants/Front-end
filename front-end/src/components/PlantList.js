@@ -35,16 +35,30 @@ const TopDivStyle = styled.div`
 const PlantList = props => {
     const [plantList, setPlantList] = useState([])
 
+    const username = localStorage.getItem("username");
     useEffect(() => {
-        axios.get('https://vdtyson-watermyplants.herokuapp.com/plants/user/4')
-            .then(response => {
-                console.log(response)
-                setPlantList()
-            })
-            .catch(error => {
-                console.log("Something went wrong!", error)
-            })
-    }, [])
+    axios
+      .get(
+        `https://vdtyson-watermyplants.herokuapp.com/plants/username/${username}`
+      )
+      .then(response => {
+        const userID = response.data;
+        console.log(response.data);
+        console.log(userID);
+        axios
+          .get(
+            `https://vdtyson-watermyplants.herokuapp.com/plants/user/${userID}`
+          )
+          .then(response => {
+            console.log(response);
+            setPlantList(response.data);
+          })
+          .catch(error => {
+            console.log("Something went wrong!", error, username);
+          });
+      })
+      .catch(error => console.log("ERROR", error));
+  }, []);
 
     return (
         <div>

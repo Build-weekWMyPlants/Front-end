@@ -57,118 +57,118 @@ const StyledButton = styled.button`
   margin: 10px auto;
   border-radius: 20px;
 `;
-const NewUser = ({ values, errors, touched, status, login}) => {
-  const [user, setUser] = useState([]);
-  const [data, setData] = useState({
-    username: "",
-    password: ""
-  });
-  const [loggedIn, setLoggedIn] = useState(false)
+const LoginUser = ({ values, errors, touched, status, login }) => {
+    const [user, setUser] = useState([]);
+    const [data, setData] = useState({
+        username: "",
+        password: ""
+    });
+    const [loggedIn, setLoggedIn] = useState(false)
 
-  // const handleChange = e => {
-  //   setData({
-  //     ...data,
-  //     [e.target.name]: e.target.value
-  //   });
-    
-  // };
-const logOut = e => {
-  e.preventDefault();
-  localStorage.clear("token");
-  setLoggedIn(false);
-}
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   login(data);
-  //   console.log(data)
-  //   // setLoggedIn(true);
-  //   // history.push("/plantpractice")
-  // };
+    // const handleChange = e => {
+    //   setData({
+    //     ...data,
+    //     [e.target.name]: e.target.value
+    //   });
 
-
-  // const axiosLogin = () => {
-
-  //     axios
-  //     .post("https://vdtyson-watermyplants.herokuapp.com/login", data)
-  //     .then(response => {
-  //         console.log(data);
-  //         const { data } = response;
-  //         localStorage.setItem("token", data.payload)
-  //     })
-  //     .catch(error=> {
-  //         console.log("LOGIN ERROR", error, data)
-  //     })
-  // }
-  
-
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
+    // };
+    const logOut = e => {
+        e.preventDefault();
+        localStorage.clear("token");
+        setLoggedIn(false);
     }
-  }, [status]);
+    // const handleSubmit = e => {
+    //   e.preventDefault();
+    //   login(data);
+    //   console.log(data)
+    //   // setLoggedIn(true);
+    //   // history.push("/plantpractice")
+    // };
 
-  return (
-    <MainCont>
-      <NavSignLog />
-      <div>
-        <h2>{loggedIn ? "Logged in" : "Please login"}</h2>
-      </div>
-      <Form >
-        <StyledForm>
-            <StyledDiv>
-          <FormDiv>
-            <StyledEntry>
-              Enter Username
+
+    // const axiosLogin = () => {
+
+    //     axios
+    //     .post("https://vdtyson-watermyplants.herokuapp.com/login", data)
+    //     .then(response => {
+    //         console.log(data);
+    //         const { data } = response;
+    //         localStorage.setItem("token", data.payload)
+    //     })
+    //     .catch(error=> {
+    //         console.log("LOGIN ERROR", error, data)
+    //     })
+    // }
+
+
+    useEffect(() => {
+        if (status) {
+            setUser([...user, status]);
+        }
+    }, [status]);
+
+    return (
+        <MainCont>
+            <NavSignLog />
+            <div>
+                <h2>{loggedIn ? "Logged in" : "Please login"}</h2>
+            </div>
+            <Form >
+                <StyledForm>
+                    <StyledDiv>
+                        <FormDiv>
+                            <StyledEntry>
+                                Enter Username
               </StyledEntry>
-              <Field
-                className="input-box"
-                type="text"
-                name="username"
-                value={values.username}
-                placeholder="username"
-              />
-              {touched.username && errors.username && (
-                <p className="error">{errors.username}</p>
-              )}
-            </FormDiv>
-            <FormDiv>
-            <StyledEntry>
-              Enter Password
+                            <Field
+                                className="input-box"
+                                type="text"
+                                name="username"
+                                value={values.username}
+                                placeholder="username"
+                            />
+                            {touched.username && errors.username && (
+                                <p className="error">{errors.username}</p>
+                            )}
+                        </FormDiv>
+                        <FormDiv>
+                            <StyledEntry>
+                                Enter Password
             </StyledEntry>
-              <Field
-                className="input-box"
-                type="password"
-                name="password"
-                placeholder="●●●●●●●●"
-                value={values.password}
-              />
-              {touched.password && errors.password && (
-                <p className="error">{errors.password}</p>
-              )}
-          </FormDiv>
-          </StyledDiv>
-          <StyledButton type="submit">Log in</StyledButton>
-          <StyledButton onClick={logOut}>Log out</StyledButton>
-          <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
-        </StyledForm>
-      </Form>
-    </MainCont>
-  );
+                            <Field
+                                className="input-box"
+                                type="password"
+                                name="password"
+                                placeholder="●●●●●●●●"
+                                value={values.password}
+                            />
+                            {touched.password && errors.password && (
+                                <p className="error">{errors.password}</p>
+                            )}
+                        </FormDiv>
+                    </StyledDiv>
+                    <StyledButton type="submit">Log in</StyledButton>
+                    <StyledButton onClick={logOut}>Log out</StyledButton>
+                    <Link className='signUpLink' to="/sign-up">Don't Have An Account?</Link>
+                </StyledForm>
+            </Form>
+        </MainCont>
+    );
 };
 
 const FormikLogin = withFormik({
-  mapPropsToValues({ username, password}) {
-    return {
-      username: username || "",
-      password: password || ""
-    };
-  },
-  handleSubmit(values, formikBag){formikBag.props.login(values)},
-  validationSchema: Yup.object().shape({
-    username: Yup.string().required("Required field."),
-    password: Yup.string().required("Required field.")
-  })
-})(NewUser);
+    mapPropsToValues({ username, password }) {
+        return {
+            username: username || "",
+            password: password || ""
+        };
+    },
+    handleSubmit(values, formikBag) { formikBag.props.login(values) },
+    validationSchema: Yup.object().shape({
+        username: Yup.string().required("Required field."),
+        password: Yup.string().required("Required field.")
+    })
+})(LoginUser);
 
 // export default (FormikLogin)
 
@@ -176,3 +176,4 @@ const mapDispatchToProps = {
     login
 };
 export default connect(state => state, mapDispatchToProps)(FormikLogin);
+
