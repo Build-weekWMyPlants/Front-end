@@ -129,7 +129,7 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
           </StyledDiv>
           <StyledButton
             type="submit"
-            // onClick={e => {history.push('plantpractice')}}
+            // onClick={() =>  {history.push('plantpractice')}}
           >
             Log in
           </StyledButton>
@@ -152,6 +152,8 @@ const FormikLogin = withFormik({
   },
   handleSubmit(values, formikBag) {
     formikBag.props.login(values);
+    formikBag.props.history.push("/plantpractice");
+    
   },
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Required field."),
