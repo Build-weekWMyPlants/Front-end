@@ -59,6 +59,10 @@ label {
   /* padding-top: 5px; */
 }
 
+input {
+  width: 80%;
+}
+
 .delete-button {
   background-color: red;
   color: white;
@@ -114,5 +118,6 @@ label {
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  margin-top: 10px;
   
 }
