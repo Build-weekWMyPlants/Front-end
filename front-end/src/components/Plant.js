@@ -62,6 +62,7 @@ const H4Style = styled.h4`
 const StyledWatered = styled.button`
   width:85px;
   height: 50px;
+  border-radius: 25px;
 `;
 
 const Plant = props => {

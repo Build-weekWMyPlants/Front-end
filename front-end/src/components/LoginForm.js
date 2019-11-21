@@ -64,25 +64,26 @@ const StyledLogOut = styled.button`
   margin: 10px auto;
   border-radius: 20px;
 `;
-const NewUser = ({ values, errors, touched, status, login }) => {
+const NewUser = ({ values, errors, touched, status, history, login }) => {
   const [user, setUser] = useState([]);
   const [data, setData] = useState({
     username: "",
     password: ""
   });
-  const username = localStorage.getItem("username")
+  const username = localStorage.getItem("username");
   const [loggedIn, setLoggedIn] = useState(false);
+  const handleChange = e => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    });
+  };
 
-    // };
-    // const handleSubmit = e => {
-    //   e.preventDefault();
-    //   login(data);
-    //   console.log(data)
-    //   // setLoggedIn(true);
-    //   // history.push("/plantpractice")
-    // };
-
- 
+  const handleSubmit = e => {
+    e.preventDefault();
+    login(data);
+    history.push("/plantpractice");
+  };
 
   const logOut = e => {
     e.preventDefault();
@@ -107,6 +108,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
                 type="text"
                 name="username"
                 value={values.username}
+                // onChange={handleChange}
                 placeholder="username"
               />
               {touched.username && errors.username && (
@@ -120,6 +122,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
                 type="password"
                 name="password"
                 placeholder="●●●●●●●●"
+                // onChange={handleChange}
                 value={values.password}
               />
               {touched.password && errors.password && (

@@ -34,8 +34,8 @@
     content: "";
     height: 39px;
     width: 39px;
-    left: 4px;
-    top: 5px;
+    /* left: 4px;
+    top: 5px; */
     background-color: #813232;
     -webkit-transition: 0.6s;
     transition: all 0.6s;
