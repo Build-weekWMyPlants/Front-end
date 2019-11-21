@@ -28,7 +28,7 @@ const StyledResults = styled.div`
   align-items: center;
 `;
 const FormDiv = styled.div`
-    margin: 10px 0;
+  margin: 10px 0;
 `;
 const NavStyle = styled.nav`
   display: flex;
@@ -36,11 +36,11 @@ const NavStyle = styled.nav`
   background-color: #235b2d;
 `;
 const StyledDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin: 0 auto;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 auto;
+  margin-bottom: 20px;
 `;
 const H1Style = styled.h1`
   width: 50%;
@@ -49,11 +49,11 @@ const H1Style = styled.h1`
   color: white;
 `;
 const H2Styled = styled.h2`
-    margin-top: 20px;
+  margin-top: 20px;
 `;
 const H3Styled = styled.h3`
-    font-size: 25px;
-    margin-top: 20px;
+  font-size: 25px;
+  margin-top: 20px;
 `;
 const StyledButton = styled.button`
   background-color: #235b2d;
@@ -65,89 +65,130 @@ const StyledButton = styled.button`
 `;
 
 const NewUser = ({ history, signUp, values, errors, touched, status }) => {
-    const [user, setUser] = useState([]);
-    const [userInfo, setUserInfo] = useState({
-        username: "",
-        primaryemail: "",
-        password: ""
-    })
-    const handleChange = e => {
-        setUserInfo({
-            ...userInfo,
-            [e.target.name]: e.target.value
-        })
+  const [user, setUser] = useState([]);
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    primaryemail: "",
+    password: ""
+  });
+  const handleChange = e => {
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value
+    });
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    signUp(userInfo);
+    history.push("/login");
+  };
+  useEffect(() => {
+    if (status) {
+      setUser([...user, status]);
     }
-    const handleSubmit = e => {
-        e.preventDefault();
-        signUp(userInfo);
-        history.push('/login')
+  }, [status]);
 
-    }
-    useEffect(() => {
-        if (status) {
-            setUser([...user, status]);
-        }
-    }, [status]);
-
-    return (
-        <MainCont>
-            <NavStyle>
-                <H1Style>Plant Parenthood</H1Style>
-            </NavStyle>
-            <div>
-                <H2Styled>Let's get started!</H2Styled>
-                <H3Styled>Create your account</H3Styled>
-            </div>
-            <Form>
-                <StyledForm>
-                    <StyledDiv>
-                        <FormDiv>
-                            <StyledEntry>Username</StyledEntry>
-                            <Field className='input-box' type='text' name='name' placeholder='username' />
-                            {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
-                        </FormDiv>
-                        <FormDiv>
-                            <StyledEntry>Email</StyledEntry>
-                            <Field className='input-box' type='email' name='email' placeholder='Example@gmail.com' />
-                            {touched.email && errors.email && (<p className='error'>{errors.email}</p>)}
-                        </FormDiv>
-                            <StyledEntry>Password</StyledEntry>
-                            <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
-                            {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
-                        <FormDiv>    
-                            <StyledEntry>Confirm Password</StyledEntry>
-                            <Field className='input-box' type='password' name='password' placeholder='●●●●●●●●' />
-                            {/* {touched.confirm && errors.confirm && (<p className='error'>{errors.confirm}</p>)} */}
-                        </FormDiv>    
-                    </StyledDiv>
-                    <StyledButton>Next</StyledButton>
-                    <Link to='/login' className='accountLink'>Already Have An Account?</Link>
-                </StyledForm>
-            </Form>
-        </MainCont>
-    )
-}
+  return (
+    <MainCont>
+      <NavStyle>
+        <H1Style>Plant Parenthood</H1Style>
+      </NavStyle>
+      <div>
+        <H2Styled>Let's get started!</H2Styled>
+        <H3Styled>Create your account</H3Styled>
+      </div>
+      <Form onSubmit={handleSubmit} >
+        <StyledForm>
+          <StyledDiv>
+            <FormDiv>
+              <StyledEntry>Username</StyledEntry>
+              <Field
+                className="input-box"
+                type="text"
+                name="username"
+                placeholder="username"
+                onChange={handleChange}
+                value={userInfo.username}
+              />
+              {touched.name && errors.name && (
+                <p className="error">{errors.name}</p>
+              )}
+            </FormDiv>
+            <FormDiv>
+              <StyledEntry>Email</StyledEntry>
+              <Field
+                className="input-box"
+                type="primaryemail"
+                name="primaryemail"
+                placeholder="Example@gmail.com"
+               onChange={handleChange}
+                value={userInfo.primaryemail}
+              />
+              {touched.email && errors.email && (
+                <p className="error">{errors.email}</p>
+              )}
+            </FormDiv>
+            <StyledEntry>Password</StyledEntry>
+            <Field
+              className="input-box"
+              type="password"
+              name="password"
+              placeholder="●●●●●●●●"
+              onChange={handleChange}
+              value={userInfo.password}
+            />
+            {touched.password && errors.password && (
+              <p className="error">{errors.password}</p>
+            )}
+            {/* <FormDiv>
+              <StyledEntry>Confirm Password</StyledEntry>
+              <Field
+                className="input-box"
+                type="password"
+                name="password"
+                placeholder="●●●●●●●●"
+              />
+              {touched.confirm && errors.confirm && (<p className='error'>{errors.confirm}</p>)}
+            </FormDiv> */}
+          </StyledDiv>
+          <StyledButton type="submit" >Next</StyledButton>
+          <Link to="/login" className="accountLink">
+            Already Have An Account?
+          </Link>
+        </StyledForm>
+      </Form>
+    </MainCont>
+  );
+};
 
 const FormikNewUser = withFormik({
-    mapPropsToValues({ name, email, password, /*confirm*/ }) {
-        return {
-            name: name || '',
-            email: email || '',
-            password: password || '',
-            // confirm: confirm || ''
-        };
-    },
-
-    validationSchema: Yup.object().shape({
-        name: Yup.string().min(3, 'Name must have more than 3 characters.').required('Required field.'),
-        email: Yup.string().email("Email not valid.").required("Required field."),
-        password: Yup.string().min(6, 'Password must have at least 6 characters.').required('Required field.'),
-        // confirm: Yup.string()
-    }),
+  mapPropsToValues({ name, primaryemail, password  }) {
+    return {
+      name: name || "",
+      primaryemail: primaryemail || "",
+      password: password || ""
+      
+    };
+  },
+// handleSubmit(values, formikBag){
+//     formikBag.props.signUp(values)
+// },
+  validationSchema: Yup.object().shape({
+    name: Yup.string()
+      .min(3, "Name must have more than 3 characters.")
+      .required("Required field."),
+    email: Yup.string()
+      .email("Email not valid.")
+      .required("Required field."),
+    password: Yup.string()
+      .min(6, "Password must have at least 6 characters.")
+      .required("Required field.")
+   
+  })
 })(NewUser);
 
 const mapDispatchToProps = {
-    signUp
+  signUp
 };
 
 export default connect(state => state, mapDispatchToProps)(FormikNewUser);

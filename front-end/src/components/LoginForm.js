@@ -64,6 +64,18 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
   });
   const username = localStorage.getItem("username");
   const [loggedIn, setLoggedIn] = useState(false);
+  const handleChange = e => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    login(data);
+    history.push("/plantpractice");
+  };
 
   const logOut = e => {
     e.preventDefault();
@@ -71,11 +83,11 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
     setLoggedIn(false);
   };
 
-  // useEffect(() => {
-  //   if (status) {
-  //     setUser([...user, status]);
-  //   }
-  // }, [status]);
+  useEffect(() => {
+    if (status) {
+      setUser([...user, status]);
+    }
+  }, [status]);
 
   return (
     <MainCont>
@@ -93,6 +105,7 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
                 type="text"
                 name="username"
                 value={values.username}
+                // onChange={handleChange}
                 placeholder="username"
               />
               {touched.username && errors.username && (
@@ -106,6 +119,7 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
                 type="password"
                 name="password"
                 placeholder="●●●●●●●●"
+                // onChange={handleChange}
                 value={values.password}
               />
               {touched.password && errors.password && (
@@ -115,11 +129,7 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
           </StyledDiv>
           <StyledButton
             type="submit"
-            onClick={e => {
-              e.preventDefault();
-              setLoggedIn(true);
-              history.push("/plantpractice")
-            }}
+            // onClick={e => {history.push('plantpractice')}}
           >
             Log in
           </StyledButton>
