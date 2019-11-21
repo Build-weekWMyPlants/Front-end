@@ -56,17 +56,34 @@ const StyledButton = styled.button`
   margin: 10px auto;
   border-radius: 20px;
 `;
-const NewUser = ({ values, errors, touched, status, login }) => {
+const StyledLogOut = styled.button`
+  background-color: white;
+  border: 1px solid #235b2d;
+  color: #235b2d;
+  width: 25%;
+  margin: 10px auto;
+  border-radius: 20px;
+`;
+const NewUser = ({ values, errors, touched, status, history, login }) => {
   const [user, setUser] = useState([]);
   const [data, setData] = useState({
     username: "",
     password: ""
   });
-  const username = localStorage.getItem("username")
+  const username = localStorage.getItem("username");
   const [loggedIn, setLoggedIn] = useState(false);
+  const handleChange = e => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    });
+  };
 
-
- 
+  const handleSubmit = e => {
+    e.preventDefault();
+    login(data);
+    history.push("/plantpractice");
+  };
 
   const logOut = e => {
     e.preventDefault();
@@ -74,11 +91,6 @@ const NewUser = ({ values, errors, touched, status, login }) => {
     setLoggedIn(false);
   };
 
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
-    }
-  }, [status]);
 
   return (
     <MainCont>
@@ -96,6 +108,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
                 type="text"
                 name="username"
                 value={values.username}
+                // onChange={handleChange}
                 placeholder="username"
               />
               {touched.username && errors.username && (
@@ -109,6 +122,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
                 type="password"
                 name="password"
                 placeholder="●●●●●●●●"
+                // onChange={handleChange}
                 value={values.password}
               />
               {touched.password && errors.password && (
@@ -117,7 +131,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
             </FormDiv>
           </StyledDiv>
           <StyledButton type="submit"onClick={e => setLoggedIn(true)}>Log in</StyledButton>
-          <StyledButton onClick={logOut}>Log out</StyledButton>
+          <StyledLogOut onClick={logOut}>Log out</StyledLogOut>
           <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
         </StyledForm>
       </Form>
@@ -145,3 +159,4 @@ const mapDispatchToProps = {
   login
 };
 export default connect(state => state, mapDispatchToProps)(FormikLogin);
+

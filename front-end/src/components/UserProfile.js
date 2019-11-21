@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import Nav from "./Nav";
 import plant from '../images/placeholder-plant.jpg';
@@ -70,34 +70,35 @@ const ImgPlaceholder = styled.img`
 
 const UserProfile = () => {
 
-    const [userPhoto, setUserPhoto] = useState([]);
-
+    const [data, setData] = useState([]);
+    const user = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
     useEffect(() => {
-        axios.get(``)
+        axios.get(`https://vdtyson-watermyplants.herokuapp.com/username/cinnamon`)
             .then(response => {
                 console.log(response);
-                setUserPhoto(response.data);
+                setData(response.data);
             })
             .catch(err => {
-                console.log('Identity theft is not a joke! Now we gotta fix it.');
+                console.log(err, 'Identity theft is not a joke! Now we gotta fix it.');
             });
     }, [])
 
     return (
         <div>
-            <Nav/>
+            <Nav />
             <MainContain>
-                <StyledDiv>
-                <ImgPlaceholder className='plantImage' src={plant} />
-                <UpdateButton>Update Photo</UpdateButton>
-                </StyledDiv>
+                {/* <StyledDiv>
+                    <ImgPlaceholder className='plantImage' src={plant} />
+                    <UpdateButton>Update Photo</UpdateButton>
+                </StyledDiv> */}
                 <StyledDiv>
                     <h4>Username</h4>
-                    <p>This is the Username placeholder</p>
+                    <p>Hi, {user}!</p>
                 </StyledDiv>
                 <StyledDiv>
-                    <h4>Password</h4>
-                    <p>This is the Password placeholder</p>
+                    <h4>Email</h4>
+                    <p>{email}</p>
                 </StyledDiv>
                 <StyledDiv>
                     <SaveButton>Save Changes</SaveButton>
