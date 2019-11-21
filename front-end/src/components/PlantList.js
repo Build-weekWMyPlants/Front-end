@@ -73,6 +73,7 @@ const PlantList = props => {
             key={plant.id}
             name={plant.nickname}
             species={plant.plantType}
+            image={plant.photo}
           />
         ))}
       </MainContain>
