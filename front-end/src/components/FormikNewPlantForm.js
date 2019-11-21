@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import { postPlant } from "../actions/postPlantActions";
 import "../../src/App.css";
 import { connect } from "react-redux";
+import PlantPic from "../images/plant.png"
 
 const LogInDivStyled = styled.div`
   width: 50%;
@@ -19,7 +20,7 @@ const LogInDivStyled = styled.div`
 `;
 
 const MainContain = styled.div`
-  height: 93vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,18 +54,24 @@ const NewPlant = ({ postPlant }) => {
     <div>
       <Nav />
       <h1>Add A Plant</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name"></label>
+      <MainContain>
+        <LogInDivStyled>
+          <ImageDiv>
+          <img className="new-plant-image"src={PlantPic} alt="hands holding plant"/>
+          </ImageDiv>
+      <form className="form-container" onSubmit={handleSubmit}>
+        <label htmlFor="name">Plant Nickname: </label>
         <input
           type="text"
           name="nickname"
           id="nickname"
+          required
           value={plant.nickname}
           onChange={handleChange}
           placeholder="Plant Nickname"
         />
 
-        <label htmlFor="age"></label>
+        <label htmlFor="age">Plant Photo: </label>
         <input
           type="text"
           name="photo"
@@ -74,18 +81,21 @@ const NewPlant = ({ postPlant }) => {
           placeholder="Photo URL"
         />
 
-        <label htmlFor="height"></label>
+        <label htmlFor="height">Plant Species: </label>
         <input
           type="text"
           name="plantType"
           id="plantType"
+          required
           value={plant.plantType}
           onChange={handleChange}
           placeholder="Plant Type"
         />
 
-        <button type="submit">Add Plant</button>
+        <button className="add-plant-button" type="submit">Add Plant</button>
       </form>
+      </LogInDivStyled>
+      </MainContain>
     </div>
   );
 };

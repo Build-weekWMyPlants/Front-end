@@ -29,11 +29,12 @@ function App() {
         <Route
           path="/plantpractice/user/id/plants"
           render={props => <PlantList {...props} />}
-        />
+/>
       </PrivateRoute>
 
       <Route exact path="/" render={props => <FormikNewUser {...props} />} />
 
+      <Route path="/sign-up" render={props => <FormikNewUser {...props} />} />
       <Route exact path="/login" render={props => <LoginForm {...props} />} />
 
     
