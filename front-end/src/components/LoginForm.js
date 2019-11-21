@@ -56,6 +56,14 @@ const StyledButton = styled.button`
   margin: 10px auto;
   border-radius: 20px;
 `;
+const StyledLogOut = styled.button`
+  background-color: white;
+  border: 1px solid #235b2d;
+  color: #235b2d;
+  width: 25%;
+  margin: 10px auto;
+  border-radius: 20px;
+`;
 const NewUser = ({ values, errors, touched, status, login }) => {
   const [user, setUser] = useState([]);
   const [data, setData] = useState({
@@ -120,7 +128,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
             </FormDiv>
           </StyledDiv>
           <StyledButton type="submit"onClick={e => setLoggedIn(true)}>Log in</StyledButton>
-          <StyledButton onClick={logOut}>Log out</StyledButton>
+          <StyledLogOut onClick={logOut}>Log out</StyledLogOut>
           <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
         </StyledForm>
       </Form>
