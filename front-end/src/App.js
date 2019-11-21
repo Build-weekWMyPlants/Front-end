@@ -14,21 +14,20 @@ import FormikNewUser from "./components/SignUpForm";
 function App() {
   return (
     <div className="App">
-      
       <PrivateRoute path="/plantpractice">
         <Route
           path="/plantpractice/add-plant"
           render={props => <FormikNewPlantForm {...props} />}
         />
-        <Route path="/plant" render={props => <Plant {...props} />} />
+        <Route path="/plantpractice/plant" render={props => <Plant {...props} />} />
         <Route exact path="/plantpractice" render={props => <PlantList />} />
-        <Route path="/userprofile" render={props => <UserProfile />} />
+        <Route path="/plantpractice/userprofile" render={props => <UserProfile />} />
         <Route
-          path="/user/:id/plant/:id"
+          path="/plantpractice/user/:id/plant/:id"
           render={props => <Plant {...props} />}
         />
         <Route
-          path="/user/id/plants"
+          path="/plantpractice/user/id/plants"
           render={props => <PlantList {...props} />}
         />
       </PrivateRoute>
