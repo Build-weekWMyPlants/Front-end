@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../utils/PrivateRoute"
+import axios from "axios"
 
 export const DELETE_PLANT_START = "DELETE_PLANT_START"
 export const DELETE_PLANT_SUCCESS = "DELETE_PLANT_SUCCESS"
@@ -23,11 +23,11 @@ export const deletePlantFail = error => ({
 })
 
 export const deletePlant = plant => {
-    const authAxios = axiosWithAuth();
+    
     return dispatch => {
         dispatch(deletePlantStart());
-        authAxios
-        .delete(`/api/plants/${plant.id}`, plant.id)
+        axios
+        .delete(`/plants/${plant.id}`, plant.id)
         .then(response => {
             dispatch(deletePlantSuccess(response))
         })
