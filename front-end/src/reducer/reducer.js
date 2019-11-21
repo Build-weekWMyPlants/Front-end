@@ -28,11 +28,13 @@ import {
 //   GET_PLANTS_SUCCESS,
 //   GET_PLANTS_FAIL
 // } from "../actions/getPlantsActions";
+
 const newUserState = () => ({
   username: "",
   password: "",
   primaryemail: ""
 });
+
 export const signUpreducer = (state = newUserState, action) => {
   switch (action.type) {
     case CREATE_USER_START:
@@ -106,4 +108,6 @@ export const addPlantReducer = (state = newPlantState, action) => {
       default:
       return state
   }
+
 };
+

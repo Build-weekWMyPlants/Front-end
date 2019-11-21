@@ -71,7 +71,8 @@ const ImgPlaceholder = styled.img`
 const UserProfile = () => {
 
     const [data, setData] = useState([]);
-    const user = localStorage.getItem('username')
+    const user = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
     useEffect(() => {
         axios.get(`https://vdtyson-watermyplants.herokuapp.com/username/cinnamon`)
             .then(response => {
@@ -96,8 +97,8 @@ const UserProfile = () => {
                     <p>Hi, {user}!</p>
                 </StyledDiv>
                 <StyledDiv>
-                    <h4>Password</h4>
-                    <p>This is the Password placeholder</p>
+                    <h4>Email</h4>
+                    <p>{email}</p>
                 </StyledDiv>
                 <StyledDiv>
                     <SaveButton>Save Changes</SaveButton>
