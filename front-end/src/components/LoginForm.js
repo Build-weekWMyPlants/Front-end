@@ -148,6 +148,8 @@ const FormikLogin = withFormik({
   },
   handleSubmit(values, formikBag) {
     formikBag.props.login(values);
+    formikBag.props.history.push("/plantpractice");
+    
   },
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Required field."),
