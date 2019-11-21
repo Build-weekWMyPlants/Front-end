@@ -36,6 +36,8 @@ function App() {
 
       <Route path="/sign-up" render={props => <FormikNewUser {...props} />} />
       <Route exact path="/login" render={props => <LoginForm {...props} />} />
+
+    
     </div>
   );
 }
