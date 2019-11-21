@@ -2,7 +2,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAIL
-} from "../actions/LoginActions";
+} from "../actions/Loginactions";
 import {
   CREATE_USER_START,
   CREATE_USER_SUCCESS,
@@ -110,3 +110,4 @@ export const addPlantReducer = (state = newPlantState, action) => {
   }
 
 };
+
