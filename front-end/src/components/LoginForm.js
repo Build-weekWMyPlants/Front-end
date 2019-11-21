@@ -63,7 +63,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
     username: "",
     password: ""
   });
-
+  const username = localStorage.getItem("username")
   const [loggedIn, setLoggedIn] = useState(false);
 
 
@@ -85,7 +85,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
     <MainCont>
       <NavSignLog />
       <div>
-        <h2>{loggedIn ? "Logged in" : "Please login"}</h2>
+        <h2>{loggedIn ? `Hello, ${username}` : "Please login"}</h2>
       </div>
       <Form>
         <StyledForm>
@@ -117,7 +117,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
               )}
             </FormDiv>
           </StyledDiv>
-          <StyledButton type="submit">Log in</StyledButton>
+          <StyledButton type="submit"onClick={e => setLoggedIn(true)}>Log in</StyledButton>
           <StyledButton onClick={logOut}>Log out</StyledButton>
           <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
         </StyledForm>
