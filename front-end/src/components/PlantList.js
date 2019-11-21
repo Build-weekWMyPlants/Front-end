@@ -53,17 +53,6 @@ const PlantList = props => {
       .catch(error => console.log("ERROR", error));
   }, []);
 
-  const deletePlant = plant => {
-    console.log("ID", plantList.id);
-    axios
-      .delete(
-        `https://vdtyson-watermyplants.herokuapp.com/plants/${plant.id}`,
-      )
-      .then(response => {
-        setPlantList(response.data);
-      })
-      .catch(error => console.log("DELETE", error));
-  };
 
   return (
     <div>
@@ -84,7 +73,6 @@ const PlantList = props => {
             key={plant.id}
             name={plant.nickname}
             species={plant.plantType}
-            delete={deletePlant}
           />
         ))}
       </MainContain>
