@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
+import DefaultPic from "../images/default.jpg"
 import './Plant.css'
 
 const PlantListDiv = styled.div`
@@ -65,34 +66,49 @@ const StyledWatered = styled.button`
 `;
 
 const Plant = props => {
+    
+    const deletePlant = plant => {
+        console.log("ID", props.plant);
+        axios
+          .delete(
+            `https://vdtyson-watermyplants.herokuapp.com/plants/${props.plant.id}`,props.plant.id
+          )
+          .then(response => {
+            console.log("DELETE SUCCESS",response);
+            props.setPlants(props.plantList.filter(plant => plant.id !== props.plant.id))
+          })
+          .catch(error => console.log("DELETE", error));
+      };
 
-  const deletePlant = plant => {
-    console.log("ID", props.plant);
-    axios
-      .delete(
-        `https://vdtyson-watermyplants.herokuapp.com/plants/${props.plant.id}`, props.plant.id
-      )
-      .then(response => {
-        console.log("DELETE SUCCESS", response);
-        props.setPlants(props.plantList.filter(plant => plant.id !== props.plant.id))
-      })
-      .catch(error => console.log("DELETE", error));
-  };
-  return (
-    <div>
-      <PlantListDiv>
+    if(props.image === " " || props.image === "") {
+        return <div>
+        <PlantListDiv>
+            <ImageStyle src={DefaultPic} />
+            <H4Style>{props.name}</H4Style>
+            <H4Style>{props.species}</H4Style>
+            <WateredButton>Mark as Watered</WateredButton>
+            <ButtonContain>
+            <EditButton>Edit</EditButton>
+            <DeleteButton onClick={e => {e.preventDefault(); deletePlant(props.plant.id)}}>Delete</DeleteButton>
+            </ButtonContain>
+        </PlantListDiv> 
+        </div>          
+    } else
 
-        <ImageStyle src={props.image} />
-        <H4Style>{props.name}</H4Style>
-        <H4Style>{props.species}</H4Style>
-        <StyledWatered><Toggle /></StyledWatered>
-        <ButtonContain>
-          <EditButton>Edit</EditButton>
-          <DeleteButton onClick={e => { e.preventDefault(); deletePlant(props.plant.id) }}>Delete</DeleteButton>
-        </ButtonContain>
-      </PlantListDiv>
-    </div>
-  );
+    return (
+        <div>
+                <PlantListDiv>
+                    <ImageStyle src={props.image}/>
+                    <H4Style>{props.name}</H4Style>
+                    <H4Style>{props.species}</H4Style>
+                    <WateredButton>Mark as Watered</WateredButton>
+                    <ButtonContain>
+                    <EditButton>Edit</EditButton>
+                    <DeleteButton onClick={e => {e.preventDefault(); deletePlant(props.plant.id)}}>Delete</DeleteButton>
+                    </ButtonContain>
+                </PlantListDiv> 
+                </div>          
+    );
 }
 
 
