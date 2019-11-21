@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route } from "react-router-dom";
+import Plant from "./Plant";
 import Nav from "./Nav";
 // import FormikNewPlantForm from "./FormikNewPlantForm";
 
@@ -14,19 +15,6 @@ const MainContain = styled.div`
   // flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
-`;
-
-const PlantListDiv = styled.div`
-  border: 1px solid black;
-  height: 250px;
-  width: 250px;
-  display: flex;
-  align-items: center;
-  jusity-content: center;
-  flex-direction: column;
-  padding-left: 5px;
-  align-items: center;
-  margin-top: 35px;
 `;
 
 const TopDivStyle = styled.div`
@@ -48,15 +36,15 @@ const PlantList = props => {
       )
       .then(response => {
         const userID = response.data;
-        console.log(response.data);
         console.log(userID);
         axios
           .get(
             `https://vdtyson-watermyplants.herokuapp.com/plants/user/${userID}`
           )
           .then(response => {
-            console.log(response);
+            console.log(response.data);
             setPlantList(response.data);
+            console.log(plantList)
           })
           .catch(error => {
             console.log("Something went wrong!", error, username);
@@ -65,32 +53,39 @@ const PlantList = props => {
       .catch(error => console.log("ERROR", error));
   }, []);
 
-  // useEffect(() => {
-  //     axios.get(`https://vdtyson-watermyplants.herokuapp.com/plants/user/${userID}`)
-  //         .then(response => {
-  //             console.log(response)
-  //             setPlantList(response.data)
-  //         })
-  //         .catch(error => {
-  //             console.log("Something went wrong!", error, username)
-  //         })
-  // }, [])
+  const deletePlant = plant => {
+    console.log("ID", plantList.id);
+    axios
+      .delete(
+        `https://vdtyson-watermyplants.herokuapp.com/plants/${plant.id}`,
+      )
+      .then(response => {
+        setPlantList(response.data);
+      })
+      .catch(error => console.log("DELETE", error));
+  };
 
   return (
     <div>
       <Nav />
       <TopDivStyle>
-        <h3 className="plant-list">All Plants</h3>
-        <Link className="add-plant-button" to="plantpractice/add-plant">
+        <h3 className="plant-list">My Plants</h3>
+        <Link className="add-plant-button" to="/plantpractice/add-plant">
           <div>Add Plant</div>
         </Link>
       </TopDivStyle>
       <MainContain>
         {plantList.map(plant => (
-          <PlantListDiv>
-            <h3>Nickname: {plant.nickname}</h3>
-            <h4>Plant Type: {plant.plantType}</h4>
-          </PlantListDiv>
+          <Plant
+            plantList={plantList}
+            setPlants={setPlantList}
+            plant={plant}
+            value={plant.id}
+            key={plant.id}
+            name={plant.nickname}
+            species={plant.plantType}
+            delete={deletePlant}
+          />
         ))}
       </MainContain>
     </div>
