@@ -25,7 +25,7 @@ const Nav = () => {
                 <Link className="plant-icon" to="/plantpractice">
                 <FaSeedling />
                 </Link>
-                <Link className="icon-style" to="/userprofile">
+                <Link className="icon-style" to="plantpractice/userprofile">
                     <FaUserCircle />
                 </Link>
             </NavStyle>

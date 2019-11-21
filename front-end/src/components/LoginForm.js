@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import NavSignLog from "./NavSignLog";
 import { connect } from "react-redux";
-import { login } from "../actions/LoginActions";
+import { login } from "../actions/Loginactions";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
+
 
 const MainCont = styled.div`
   width: 50%;
@@ -52,8 +53,8 @@ const StyledButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;
   color: white;
-  width: 30%;
-  margin: 30 0;
+  width: 25%;
+  margin: 10px auto;
   border-radius: 20px;
 `;
 const NewUser = ({ values, errors, touched, status, login }) => {
@@ -62,7 +63,11 @@ const NewUser = ({ values, errors, touched, status, login }) => {
     username: "",
     password: ""
   });
+
   const [loggedIn, setLoggedIn] = useState(false);
+
+
+ 
 
   const logOut = e => {
     e.preventDefault();
@@ -114,7 +119,7 @@ const NewUser = ({ values, errors, touched, status, login }) => {
           </StyledDiv>
           <StyledButton type="submit">Log in</StyledButton>
           <StyledButton onClick={logOut}>Log out</StyledButton>
-          <Link to="/sign-up">Don't Have An Account?</Link>
+          <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
         </StyledForm>
       </Form>
     </MainCont>

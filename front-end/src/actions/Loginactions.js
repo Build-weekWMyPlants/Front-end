@@ -1,10 +1,8 @@
 import axios from "axios";
 import { axiosWithAuth } from "../utils/PrivateRoute";
-
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
-
 //login actions
 export const loginStart = data => ({
   type: LOGIN_START,
@@ -18,7 +16,6 @@ export const loginFail = error => ({
   type: LOGIN_FAIL,
   Payload: error
 });
-
 function axiosLogin() {
   const clientId = "lambda-client";
   const clientSecret = "lambda-secret";
@@ -30,7 +27,6 @@ function axiosLogin() {
     }
   });
 }
-
 export const login = (user) => {
   return dispatch => {
     axiosLogin()
@@ -43,7 +39,7 @@ export const login = (user) => {
         console.log("LOGIN SUCCESS", response.data);
         localStorage.setItem("token", response.data.access_token);
         localStorage.setItem("token_type", response.data.token_type);
-       
+        localStorage.setItem("username", user.username)
       })
       .catch(error => {
         dispatch(loginFail(error.response));
@@ -51,7 +47,6 @@ export const login = (user) => {
       });
   };
 };
-
 // export const login = data => {
 //   return dispatch => {
 //     axiosWithAuth()
