@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
 import { signUpreducer, loginReducer, addPlantReducer } from "./reducer/reducer";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,7 +15,7 @@ const store = createStore(
     signup: signUpreducer,
     login: loginReducer,
     postPlant: addPlantReducer
-  }), applyMiddleware(thunk)
+  }), applyMiddleware(/*thunk*/)
 );
 
 ReactDOM.render(

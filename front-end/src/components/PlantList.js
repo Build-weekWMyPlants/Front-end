@@ -26,59 +26,59 @@ const TopDivStyle = styled.div`
 `;
 
 const PlantList = props => {
-  const [plantList, setPlantList] = useState([]);
-  const username = localStorage.getItem("username");
+    const [plantList, setPlantList] = useState([]);
+    const username = localStorage.getItem("username");
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://vdtyson-watermyplants.herokuapp.com/plants/username/${username}`
-      )
-      .then(response => {
-        const userID = response.data;
-        console.log(userID);
+    useEffect(() => {
         axios
-          .get(
-            `https://vdtyson-watermyplants.herokuapp.com/plants/user/${userID}`
-          )
-          .then(response => {
-            console.log(response.data);
-            setPlantList(response.data);
-            console.log(plantList)
-          })
-          .catch(error => {
-            console.log("Something went wrong!", error, username);
-          });
-      })
-      .catch(error => console.log("ERROR", error));
-  }, []);
+            .get(
+                `https://vdtyson-watermyplants.herokuapp.com/plants/username/${username}`
+            )
+            .then(response => {
+                const userID = response.data;
+                console.log(userID);
+                axios
+                    .get(
+                        `https://vdtyson-watermyplants.herokuapp.com/plants/user/${userID}`
+                    )
+                    .then(response => {
+                        console.log(response.data);
+                        setPlantList(response.data);
+                        console.log(plantList)
+                    })
+                    .catch(error => {
+                        console.log("Something went wrong!", error, username);
+                    });
+            })
+            .catch(error => console.log("ERROR", error));
+    }, []);
 
 
-  return (
-    <div>
-      <Nav />
-      <TopDivStyle>
-        <h3 className="plant-list">My Plants</h3>
-        <Link className="add-plant-button" to="/plantpractice/add-plant">
-          <div>Add Plant</div>
-        </Link>
-      </TopDivStyle>
-      <MainContain>
-        {plantList.map(plant => (
-          <Plant
-            plantList={plantList}
-            setPlants={setPlantList}
-            plant={plant}
-            value={plant.id}
-            key={plant.id}
-            name={plant.nickname}
-            species={plant.plantType}
-            image={plant.photo}
-          />
-        ))}
-      </MainContain>
-    </div>
-  );
+    return (
+        <div>
+            <Nav />
+            <TopDivStyle>
+                <h3 className="plant-list">My Plants</h3>
+                <Link className="add-plant-button" to="/plantpractice/add-plant">
+                    <div>Add Plant</div>
+                </Link>
+            </TopDivStyle>
+            <MainContain>
+                {plantList.map(plant => (
+                    <Plant
+                        plantList={plantList}
+                        setPlants={setPlantList}
+                        plant={plant}
+                        value={plant.id}
+                        key={plant.id}
+                        name={plant.nickname}
+                        species={plant.plantType}
+                        image={plant.photo}
+                    />
+                ))}
+            </MainContain>
+        </div>
+    );
 };
 
 export default PlantList;
