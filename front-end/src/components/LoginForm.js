@@ -92,8 +92,9 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
   };
 
   return (
+    <div>
+    <NavSignLog />
     <MainCont>
-      <NavSignLog />
       <div>
         <h2>
           {localStorage.getItem("username")
@@ -143,6 +144,7 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
         </StyledForm>
       </Form>
     </MainCont>
+    </div>
   );
 };
 

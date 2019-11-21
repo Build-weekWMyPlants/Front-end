@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
-import DefaultPic from "../images/default.jpg";
-import "./Plant.css";
+import DefaultPic from "../images/default.jpg"
+import './Plant.css';
+import dateFormat from "dateformat"
 
 const PlantListDiv = styled.div`
   border: 1px solid black;
-  height: 400px;
-  width: 400px;
+  height: 420px;
+  width: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,6 +61,7 @@ const H4Style = styled.h4`
 const StyledWatered = styled.button`
   width: 85px;
   height: 50px;
+  border-radius: 25px;
 `;
 
 // const initialPhoto = {
@@ -69,9 +71,17 @@ const initialNickname = {
   nickname: ""
 };
 
+
 const Plant = props => {
   // const [photoEditing, setPhotoEditting] = useState(false);
   // const [photoToEdit, setPhotoToEdit] = useState(initialPhoto);
+  const [timeStamp, setTimeStamp] = useState("")
+
+    const waterTimeStamp = () => {
+        setTimeStamp(dateFormat("dddd, mmmm dS, yyyy, h:MM:ss TT"))
+        // dateFormat(timeStamp, "dddd, mmmm ds, yyyy, h:MM:ss TT")
+        console.log(timeStamp)
+    }
   const deletePlant = plant => {
     console.log("ID", props.plant);
     axios
@@ -119,7 +129,8 @@ const Plant = props => {
         />
         <H4Style>{props.name}</H4Style>
         <H4Style>{props.species}</H4Style>
-        <WateredButton>Mark as Watered</WateredButton>
+        <WateredButton onClick={waterTimeStamp}>Mark as Watered</WateredButton>
+                    <p>Last Watered: {timeStamp}</p>
         <ButtonContain>
           <EditButton onClick={e => {editName(nameToEdit)}}>Edit Name</EditButton>
           <DeleteButton
