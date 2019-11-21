@@ -8,7 +8,6 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
-import NavSignLog from './NavSignLog';
 
 const MainCont = styled.div`
   width: 50%;

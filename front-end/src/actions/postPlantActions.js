@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "../utils/PrivateRoute";
+import axios from "axios";
 
 export const POST_PLANT_START = "POST_PLANT_START"
 export const POST_PLANT_SUCCESS = "POST_PLANT_SUCCESS"
@@ -11,7 +12,7 @@ export const postPlantStart = plant => ({
 
 export const postPlantSuccess = plant => ({
     type: POST_PLANT_SUCCESS,
-    payload:{
+    payload: {
         ...plant
     }
 })
@@ -21,20 +22,29 @@ export const postPlantFail = error => ({
     payload: error
 })
 
-export const postPlant = (plant) => dispatch =>{
-    console.log("POST PLANT", plant)
-    const authAxios = axiosWithAuth
-    
-        dispatch(postPlantStart());
-        authAxios()
-        .post("/plants/7", plant)
+export const postPlant = plant => dispatch => {
+    const username = localStorage.getItem("username");
+    console.log("POST PLANT", plant);
+    const authAxios = axiosWithAuth;
+    axios
+        .get(
+            `https://vdtyson-watermyplants.herokuapp.com/plants/username/${username}`
+        )
         .then(response => {
-            dispatch(postPlantSuccess(response.data));
-            console.log("POST PLANT SUCCESS", response.data)
+            const userID = response.data;
+            dispatch(postPlantStart());
+            authAxios()
+                .post(`/plants/${userID}`, plant)
+                .then(response => {
+                    dispatch(postPlantSuccess(response.data));
+                    console.log("POST PLANT SUCCESS", response.data);
+                })
+                .catch(error => {
+                    dispatch(postPlantFail(error.response));
+                    console.log("POST PLANT FAIL", error);
+                });
         })
         .catch(error => {
-            dispatch(postPlantFail(error.response));
-            console.log("POST PLANT FAIL", error)
-        })
-    
-}
+            console.log("POST ERROR", error);
+        });
+};
