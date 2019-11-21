@@ -14,7 +14,6 @@ import FormikNewUser from "./components/SignUpForm";
 function App() {
   return (
     <div className="App">
-      
       <PrivateRoute path="/plantpractice">
         <Route
           path="/plantpractice/add-plant"
