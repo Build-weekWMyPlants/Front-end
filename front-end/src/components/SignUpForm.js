@@ -14,6 +14,7 @@ const MainCont = styled.div`
 `;
 const StyledForm = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   margin: 100px auto;
@@ -21,6 +22,8 @@ const StyledForm = styled.div`
 const StyledEntry = styled.label`
   color: black;
   font-weight: bold;
+  width: 80%;
+  margin: 0 auto;
 `;
 const StyledResults = styled.div`
   display: flex;
@@ -89,10 +92,9 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
   }, [status]);
 
   return (
+    <div>
+      <NavSignLog />
     <MainCont>
-      <NavStyle>
-        <H1Style>Plant Parenthood</H1Style>
-      </NavStyle>
       <div>
         <H2Styled>Let's get started!</H2Styled>
         <H3Styled>Create your account</H3Styled>
@@ -158,6 +160,7 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
         </StyledForm>
       </Form>
     </MainCont>
+    </div>
   );
 };
 
