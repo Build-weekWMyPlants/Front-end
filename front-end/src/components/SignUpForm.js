@@ -25,19 +25,11 @@ const StyledEntry = styled.label`
   width: 80%;
   margin: 0 auto;
 `;
-const StyledResults = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+
 const FormDiv = styled.div`
   margin: 10px 0;
 `;
-const NavStyle = styled.nav`
-  display: flex;
-  align-items: center;
-  background-color: #235b2d;
-`;
+
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,12 +37,7 @@ const StyledDiv = styled.div`
   margin: 0 auto;
   margin-bottom: 20px;
 `;
-const H1Style = styled.h1`
-  width: 50%;
-  display: flex;
-  padding-left: 10px;
-  color: white;
-`;
+
 const H2Styled = styled.h2`
   margin-top: 20px;
 `;

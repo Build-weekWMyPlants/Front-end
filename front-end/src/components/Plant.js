@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
 import DefaultPic from "../images/default.jpg"
+import Default from "../images/DefaultPlant.jpg"
 import './Plant.css';
 import dateFormat from "dateformat"
 
@@ -50,7 +51,7 @@ const DeleteButton = styled.button`
 `;
 
 const ImageStyle = styled.img`
-  width: 200px;
+  width: 370px;
   height: 200px;
   border-radius: 5px;
 `;
@@ -124,7 +125,7 @@ const Plant = props => {
       <PlantListDiv>
         <ImageStyle
           src={
-            props.image === " " || props.image === "" ? DefaultPic : props.image
+            props.image === " " || props.image === "" ? Default : props.image
           }
         />
         <H4Style>{props.name}</H4Style>
