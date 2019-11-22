@@ -29,25 +29,11 @@ const StyledEntry = styled.label`
   color: black;
   font-weight: bold;
 `;
-const StyledResults = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+
 const FormDiv = styled.div`
   margin: 10px 0;
 `;
-const NavStyle = styled.nav`
-  display: flex;
-  align-items: center;
-  background-color: #235b2d;
-`;
-const H1Style = styled.h1`
-  width: 50%;
-  display: flex;
-  padding-left: 10px;
-  color: white;
-`;
+
 const StyledButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;

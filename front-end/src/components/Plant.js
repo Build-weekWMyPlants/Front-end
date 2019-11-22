@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
-import DefaultPic from "../images/default.jpg";
-import "./Plant.css";
-import dateFormat from "dateformat";
+
+import DefaultPic from "../images/default.jpg"
+import Default from "../images/DefaultPlant.jpg"
+import './Plant.css';
+import dateFormat from "dateformat"
+
 
 const PlantListDiv = styled.div`
   border: 1px solid black;
@@ -38,7 +41,7 @@ const WateredButton = styled.button`
 
 const StyledPara = styled.p`
   font-size: 14px;
-
+`;
 const EditButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;
@@ -56,7 +59,7 @@ const DeleteButton = styled.button`
 `;
 
 const ImageStyle = styled.img`
-  width: 200px;
+  width: 370px;
   height: 200px;
   border-radius: 5px;
 `;
@@ -139,7 +142,7 @@ const Plant = props => {
       <PlantListDiv>
         <ImageStyle
           src={
-            props.image === " " || props.image === "" ? DefaultPic : props.image
+            props.image === " " || props.image === "" ? Default : props.image
           }
         />
         
