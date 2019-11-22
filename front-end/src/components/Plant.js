@@ -28,15 +28,20 @@ const ButtonContain = styled.div`
 `;
 
 const WateredButton = styled.button`
-  background-color: steelblue;
-  color: white;
-  margin-bottom: 5%;
-  border-radius: 5px;
-  font-weight: bold;
+    background-color: #2D6476;
+    border: 1px solid #2D6476;
+    color: white;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    font-weight: bold;
 `;
+
+const StyledPara = styled.p`
+  font-size: 14px;
 
 const EditButton = styled.button`
   background-color: #235b2d;
+  border: 1px solid #235b2d;
   color: white;
   border-radius: 5px;
   font-weight: bold;
@@ -44,6 +49,7 @@ const EditButton = styled.button`
 
 const DeleteButton = styled.button`
   background-color: red;
+  border: 1px solid red;
   color: white;
   border-radius: 5px;
   font-weight: bold;
@@ -58,11 +64,13 @@ const ImageStyle = styled.img`
 const H4Style = styled.h4`
   font-size: 16px;
 `;
+
 const StyledWatered = styled.button`
   width: 85px;
   height: 50px;
   border-radius: 25px;
 `;
+
 
 // const initialPhoto = {
 //   photo: ""
@@ -175,5 +183,5 @@ export default Plant;
 //     setToggleState(toggleState === "off" ? "on" : "off");
 //   }
 
+
 //   return <div className={`switch ${toggleState}`} onClick={toggle} />;
-// }

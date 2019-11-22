@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import Nav from "./Nav";
-import plant from '../images/placeholder-plant.jpg';
+import User from '../images/person-silhoutte.png';
 import './UserProfile.css';
 
 const NavStyle = styled.nav`
@@ -62,7 +62,7 @@ const StyledDiv = styled.div`
     flex-direction: column;
 `;
 const ImgPlaceholder = styled.img`
-    width: 30%;
+    width: 20%;
     display: flex;
     margin: 0 auto;
     border-radius: 150px;
@@ -88,10 +88,10 @@ const UserProfile = () => {
         <div>
             <Nav />
             <MainContain>
-                {/* <StyledDiv>
-                    <ImgPlaceholder className='plantImage' src={plant} />
+                <StyledDiv>
+                    <ImgPlaceholder className='userImage' src={User} />
                     <UpdateButton>Update Photo</UpdateButton>
-                </StyledDiv> */}
+                </StyledDiv>
                 <StyledDiv>
                     <h4>Username</h4>
                     <p>Hi, {user}!</p>
