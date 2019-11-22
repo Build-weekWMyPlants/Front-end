@@ -39,7 +39,7 @@ const WateredButton = styled.button`
 
 const StyledPara = styled.p`
   font-size: 14px;
-
+`;
 const EditButton = styled.button`
   background-color: #235b2d;
   border: 1px solid #235b2d;
