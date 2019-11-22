@@ -1,3 +1,7 @@
+* {
+  font-family: 'Nunito', 'san serif';
+}
+
 .App {
   text-align: center;
 }
@@ -119,5 +123,11 @@ input {
   align-items: center;
   font-weight: bold;
   margin-top: 10px;
+  
+}
+
+.input-box {
+  width: 80%;
+  margin: 0 auto;
   
 }
