@@ -91,15 +91,18 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
     setLoggedIn(false);
   };
 
-
   return (
     <div>
     <NavSignLog />
     <MainCont>
       <div>
-        <h2>{loggedIn ? `Hello, ${username}` : "Please login"}</h2>
+        <h2>
+          {localStorage.getItem("username")
+            ? `Hello, ${username}`
+            : "Please login"}
+        </h2>
       </div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <StyledForm>
           <StyledDiv>
             <FormDiv>
@@ -108,8 +111,8 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
                 className="input-box"
                 type="text"
                 name="username"
-                value={values.username}
-                // onChange={handleChange}
+                value={data.username}
+                onChange={handleChange}
                 placeholder="username"
               />
               {touched.username && errors.username && (
@@ -123,17 +126,21 @@ const NewUser = ({ values, errors, touched, status, history, login }) => {
                 type="password"
                 name="password"
                 placeholder="●●●●●●●●"
-                // onChange={handleChange}
-                value={values.password}
+                onChange={handleChange}
+                value={data.password}
               />
               {touched.password && errors.password && (
                 <p className="error">{errors.password}</p>
               )}
             </FormDiv>
           </StyledDiv>
-          <StyledButton type="submit"onClick={e => setLoggedIn(true)}>Log in</StyledButton>
+          <StyledButton type="submit" >
+            Log in
+          </StyledButton>
           <StyledLogOut onClick={logOut}>Log out</StyledLogOut>
-          <Link className='signUpLink'to="/sign-up">Don't Have An Account?</Link>
+          <Link className="signUpLink" to="/sign-up">
+            Don't Have An Account?
+          </Link>
         </StyledForm>
       </Form>
     </MainCont>
@@ -148,11 +155,10 @@ const FormikLogin = withFormik({
       password: password || ""
     };
   },
-  handleSubmit(values, formikBag) {
-    formikBag.props.login(values);
-    formikBag.props.history.push("/plantpractice");
-    
-  },
+  // handleSubmit(values, formikBag) {
+  //   formikBag.props.login(values);
+  //   formikBag.props.history.push("/plantpractice");
+  // },
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Required field."),
     password: Yup.string().required("Required field.")
@@ -163,4 +169,3 @@ const mapDispatchToProps = {
   login
 };
 export default connect(state => state, mapDispatchToProps)(FormikLogin);
-
