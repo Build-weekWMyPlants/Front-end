@@ -16,28 +16,27 @@ function App() {
     <div className="App">
       <PrivateRoute path="/plantpractice">
         <Route
-          exact path="/plantpractice/add-plant"
+          exact
+          path="/plantpractice/add-plant"
           render={props => <FormikNewPlantForm {...props} />}
         />
-        <Route path="/plantpractice/plant" render={props => <Plant {...props} />} />
-        <Route exact path="/plantpractice" render={props => <PlantList />} />
-        <Route path="/plantpractice/userprofile" render={props => <UserProfile {...props}/>} />
         <Route
-          path="/plantpractice/user/:id/plant/:id"
+          path="/plantpractice/plant"
           render={props => <Plant {...props} />}
         />
+        <Route exact path="/plantpractice" render={props => <PlantList {...props}/>} />
         <Route
-          path="/plantpractice/user/id/plants"
-          render={props => <PlantList {...props} />}
-/>
+          path="/plantpractice/userprofile"
+          render={props => <UserProfile {...props} />}
+        />
+
+        
       </PrivateRoute>
 
       <Route exact path="/" render={props => <FormikNewUser {...props} />} />
 
       <Route path="/sign-up" render={props => <FormikNewUser {...props} />} />
       <Route exact path="/login" render={props => <LoginForm {...props} />} />
-
-    
     </div>
   );
 }
