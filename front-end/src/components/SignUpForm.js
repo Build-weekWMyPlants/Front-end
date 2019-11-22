@@ -107,7 +107,7 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
               <StyledEntry>Email</StyledEntry>
               <Field
                 className="input-box"
-                type="primaryemail"
+                type="email"
                 name="primaryemail"
                 placeholder="Example@gmail.com"
                onChange={handleChange}
