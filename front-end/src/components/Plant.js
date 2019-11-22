@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import styled from "styled-components";
 import axios from "axios";
-import DefaultPic from "../images/default.jpg"
-import './Plant.css';
-import dateFormat from "dateformat"
+import DefaultPic from "../images/default.jpg";
+import "./Plant.css";
+import dateFormat from "dateformat";
 
 const PlantListDiv = styled.div`
   border: 1px solid black;
@@ -79,17 +79,16 @@ const initialNickname = {
   nickname: ""
 };
 
-
 const Plant = props => {
   // const [photoEditing, setPhotoEditting] = useState(false);
   // const [photoToEdit, setPhotoToEdit] = useState(initialPhoto);
-  const [timeStamp, setTimeStamp] = useState("")
+  const [timeStamp, setTimeStamp] = useState("");
 
-    const waterTimeStamp = () => {
-        setTimeStamp(dateFormat("dddd, mmmm dS, yyyy, h:MM:ss TT"))
-        // dateFormat(timeStamp, "dddd, mmmm ds, yyyy, h:MM:ss TT")
-        console.log(timeStamp)
-    }
+  const waterTimeStamp = () => {
+    setTimeStamp(dateFormat("dddd, mmmm dS, yyyy, h:MM:ss TT"));
+    // dateFormat(timeStamp, "dddd, mmmm ds, yyyy, h:MM:ss TT")
+    console.log(timeStamp);
+  };
   const deletePlant = plant => {
     console.log("ID", props.plant);
     axios
@@ -115,6 +114,7 @@ const Plant = props => {
 
   const saveName = () => {
     console.log("NAME", nameToEdit);
+    const newName = nameToEdit.nickname
     axios
       .put(
         `https://vdtyson-watermyplants.herokuapp.com/plants/${props.plant.id}/nickname`,
@@ -122,11 +122,18 @@ const Plant = props => {
       )
       .then(response => {
         console.log("Name Edit Success", response);
+        // props.history.push("/plantpractice");
       })
       .catch(error => {
         console.log("NAME EDIT ERROR", error);
       });
   };
+  console.log(props.name)
+  let bannana = ""
+   if (props.name.charAt(0) === "{" )
+    {bannana = JSON.parse(props.name); 
+    bannana = bannana.nickname}
+    else {bannana = props.name}
   return (
     <div>
       <PlantListDiv>
@@ -135,17 +142,25 @@ const Plant = props => {
             props.image === " " || props.image === "" ? DefaultPic : props.image
           }
         />
-        <H4Style>{props.name}</H4Style>
+        
+        <H4Style>{bannana}</H4Style>
         <H4Style>{props.species}</H4Style>
         <WateredButton onClick={waterTimeStamp}>Mark as Watered</WateredButton>
-                    <p>Last Watered: {timeStamp}</p>
+        <p>Last Watered: {timeStamp}</p>
         <ButtonContain>
-          <EditButton onClick={e => {editName(nameToEdit)}}>Edit Name</EditButton>
+          <EditButton
+            onClick={e => {
+              editName(nameToEdit.nickname);
+            }}
+          >
+            Edit Name
+          </EditButton>
           <DeleteButton
             onClick={e => {
               e.preventDefault();
               deletePlant(props.plant.id);
-            }}>
+            }}
+          >
             Delete
           </DeleteButton>
           {nameEditting && (
@@ -153,6 +168,7 @@ const Plant = props => {
               onSubmit={e => {
                 e.preventDefault();
                 saveName();
+                setNameEditting(false)
               }}
             >
               <legend>edit name</legend>
