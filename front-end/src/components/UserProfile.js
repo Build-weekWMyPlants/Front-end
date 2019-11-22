@@ -68,7 +68,7 @@ const ImgPlaceholder = styled.img`
     border-radius: 150px;
 `;
 
-const UserProfile = () => {
+const UserProfile = (props) => {
 
     const [data, setData] = useState([]);
     const user = localStorage.getItem('username');
@@ -102,7 +102,11 @@ const UserProfile = () => {
                 </StyledDiv>
                 <StyledDiv>
                     <SaveButton>Save Changes</SaveButton>
-                    <LogOutButton>Log out</LogOutButton>
+                    <LogOutButton onClick={e =>{
+                        e.preventDefault();
+                        localStorage.clear("username");
+                        props.history.push("./login")
+                    }}>Log out</LogOutButton>
                 </StyledDiv>
             </MainContain>
         </div>

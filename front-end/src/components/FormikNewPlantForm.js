@@ -31,7 +31,7 @@ const ImageDiv = styled.div`
   padding-bottom: 10px;
 `;
 
-const NewPlant = ({ postPlant }) => {
+const NewPlant = (props) => {
   const [plant, setPlant] = useState({
     nickname: "",
     photo: "",
@@ -46,8 +46,9 @@ const NewPlant = ({ postPlant }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    postPlant(plant);
+    props.postPlant(plant);
     console.log(plant);
+    props.history.push("/plantpractice")
   };
 
   return (

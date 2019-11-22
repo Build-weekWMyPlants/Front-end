@@ -112,22 +112,22 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
                 onChange={handleChange}
                 value={userInfo.username}
               />
-              {touched.name && errors.name && (
-                <p className="error">{errors.name}</p>
+              {touched.username && errors.username && (
+                <p className="error">{errors.username}</p>
               )}
             </FormDiv>
             <FormDiv>
               <StyledEntry>Email</StyledEntry>
               <Field
                 className="input-box"
-                type="primaryemail"
+                type="email"
                 name="primaryemail"
                 placeholder="Example@gmail.com"
                onChange={handleChange}
                 value={userInfo.primaryemail}
               />
-              {touched.email && errors.email && (
-                <p className="error">{errors.email}</p>
+              {touched.primaryemail && errors.primaryemail && (
+                <p className="error">{errors.primaryemail}</p>
               )}
             </FormDiv>
             <StyledEntry>Password</StyledEntry>
@@ -165,9 +165,9 @@ const NewUser = ({ history, signUp, values, errors, touched, status }) => {
 };
 
 const FormikNewUser = withFormik({
-  mapPropsToValues({ name, primaryemail, password  }) {
+  mapPropsToValues({ username, primaryemail, password  }) {
     return {
-      name: name || "",
+      username: username || "",
       primaryemail: primaryemail || "",
       password: password || ""
       
@@ -177,10 +177,10 @@ const FormikNewUser = withFormik({
 //     formikBag.props.signUp(values)
 // },
   validationSchema: Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
       .min(3, "Name must have more than 3 characters.")
       .required("Required field."),
-    email: Yup.string()
+    primaryemail: Yup.string()
       .email("Email not valid.")
       .required("Required field."),
     password: Yup.string()

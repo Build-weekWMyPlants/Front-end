@@ -21,7 +21,7 @@ function App() {
         />
         <Route path="/plantpractice/plant" render={props => <Plant {...props} />} />
         <Route exact path="/plantpractice" render={props => <PlantList />} />
-        <Route path="/plantpractice/userprofile" render={props => <UserProfile />} />
+        <Route path="/plantpractice/userprofile" render={props => <UserProfile {...props}/>} />
         <Route
           path="/plantpractice/user/:id/plant/:id"
           render={props => <Plant {...props} />}
